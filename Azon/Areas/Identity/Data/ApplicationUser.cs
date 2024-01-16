@@ -7,22 +7,24 @@ namespace Azon.Areas.Identity.Data
     {
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        public string City { get; set; }
+        public string? City { get; set; }
 
         [PersonalData]
         [Column(TypeName = "nvarchar(100)")]
-        public string Country { get; set; }
+        public string? Country { get; set; }
 
         [PersonalData]
+        public DateTime? Birthday { get; set; }
 
-        public DateTime Birthday { get; set; }
+        [NotMapped]
+        public string? Role { get; set; }
     }
 }

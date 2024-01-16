@@ -22,6 +22,10 @@ public class AzonContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<Order> Orders { get; set; }
 
+    public DbSet<StockOption> StockOptions { get; set; }
+
+    public DbSet<ColorVariant> ColorVariants { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

@@ -30,11 +30,10 @@ namespace Azon.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("Birthday")
+                    b.Property<DateTime?>("Birthday")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -42,7 +41,6 @@ namespace Azon.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("Email")
@@ -53,11 +51,9 @@ namespace Azon.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -106,6 +102,31 @@ namespace Azon.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Azon.Models.ColorVariant", b =>
+                {
+                    b.Property<int>("ColorVariantId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ColorVariantId"));
+
+                    b.Property<string>("HexCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PicturePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ColorVariantId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ColorVariants");
+                });
+
             modelBuilder.Entity("Azon.Models.Order", b =>
                 {
                     b.Property<int>("OrderId")
@@ -126,11 +147,20 @@ namespace Azon.Migrations
                     b.Property<int>("OrderStatus")
                         .HasColumnType("int");
 
+                    b.Property<bool>("PayOnDelivery")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PaymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("ShippedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("ShippingId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
@@ -157,18 +187,20 @@ namespace Azon.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("DesignPath")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal?>("Discount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -182,19 +214,11 @@ namespace Azon.Migrations
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Size")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Vector")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("inStock")
-                        .HasColumnType("int");
+                    b.Property<bool?>("isAvailable")
+                        .HasColumnType("bit");
 
                     b.HasKey("ProductId");
 
@@ -217,6 +241,9 @@ namespace Azon.Migrations
                     b.Property<string>("City")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CustomerId")
                         .HasColumnType("nvarchar(450)");
 
@@ -224,6 +251,9 @@ namespace Azon.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Info")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
@@ -242,6 +272,31 @@ namespace Azon.Migrations
                     b.ToTable("ShippingDetails");
                 });
 
+            modelBuilder.Entity("Azon.Models.StockOption", b =>
+                {
+                    b.Property<int>("StockOptionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StockOptionId"));
+
+                    b.Property<int>("ColorVariantId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Size")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StockQuantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("StockOptionId");
+
+                    b.HasIndex("ColorVariantId");
+
+                    b.ToTable("StockOptions");
+                });
+
             modelBuilder.Entity("Azon.Models.Wishlist", b =>
                 {
                     b.Property<int>("WishlistId")
@@ -251,7 +306,6 @@ namespace Azon.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WishlistId"));
 
                     b.Property<string>("CustomerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("ProductId")
@@ -281,21 +335,25 @@ namespace Azon.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CustomerId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("OriginalProductId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<int>("WishlistId")
+                    b.Property<int?>("WishlistId")
                         .HasColumnType("int");
 
                     b.HasKey("WishlistItemId");
 
                     b.HasIndex("CustomerId");
+
+                    b.HasIndex("OriginalProductId");
 
                     b.HasIndex("ProductId");
 
@@ -437,6 +495,17 @@ namespace Azon.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Azon.Models.ColorVariant", b =>
+                {
+                    b.HasOne("Azon.Models.Product", "Product")
+                        .WithMany("ColorVariants")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Azon.Models.Order", b =>
                 {
                     b.HasOne("Azon.Areas.Identity.Data.ApplicationUser", "Customer")
@@ -478,13 +547,22 @@ namespace Azon.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("Azon.Models.StockOption", b =>
+                {
+                    b.HasOne("Azon.Models.ColorVariant", "ColorVariant")
+                        .WithMany("StockOptions")
+                        .HasForeignKey("ColorVariantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ColorVariant");
+                });
+
             modelBuilder.Entity("Azon.Models.Wishlist", b =>
                 {
                     b.HasOne("Azon.Areas.Identity.Data.ApplicationUser", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CustomerId");
 
                     b.HasOne("Azon.Models.Product", null)
                         .WithMany("Wishlists")
@@ -497,7 +575,11 @@ namespace Azon.Migrations
                 {
                     b.HasOne("Azon.Areas.Identity.Data.ApplicationUser", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("CustomerId");
+
+                    b.HasOne("Azon.Models.Product", "OriginalProduct")
+                        .WithMany()
+                        .HasForeignKey("OriginalProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -509,11 +591,11 @@ namespace Azon.Migrations
 
                     b.HasOne("Azon.Models.Wishlist", "Wishlist")
                         .WithMany("Items")
-                        .HasForeignKey("WishlistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WishlistId");
 
                     b.Navigation("Customer");
+
+                    b.Navigation("OriginalProduct");
 
                     b.Navigation("Product");
 
@@ -571,8 +653,15 @@ namespace Azon.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Azon.Models.ColorVariant", b =>
+                {
+                    b.Navigation("StockOptions");
+                });
+
             modelBuilder.Entity("Azon.Models.Product", b =>
                 {
+                    b.Navigation("ColorVariants");
+
                     b.Navigation("Wishlists");
                 });
 

@@ -9,6 +9,11 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.Filters;
 using System.Text;
 using Azon.Models;
+using System.Text.Json.Serialization;
+using Stripe;
+using System.Configuration;
+using Azon.Controllers;
+using ClientShopping.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AzonContextConnection") ?? throw new InvalidOperationException("Connection string 'AzonContextConnection' not found.");
@@ -17,24 +22,43 @@ var connectionString = builder.Configuration.GetConnectionString("AzonContextCon
 // Add services to the container.
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>();
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>();
+var jwtAud = builder.Configuration.GetSection("Jwt:Audience").Get<string>();
+
+builder.Services.AddDbContext<AzonContext>(options =>
+    options.UseSqlServer(connectionString));
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+builder.Services.AddScoped<IAuthController, AuthController>();
+builder.Services.AddScoped<IHomeController, HomeController>();
+builder.Services.AddScoped<IPaymentsController, PaymentsController>();
+builder.Services.AddScoped<IShippingController, ShippingController>();
+builder.Services.AddScoped<IOrderController, OrderController>();
+builder.Services.AddScoped<IProductsController, ProductsController>();
+builder.Services.AddScoped<IWishListController, WishListController>();
 builder.Services.AddControllers();
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(60);
-   
+
+    options.Cookie.IsEssential = true;
+
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<AzonContext>(options =>
-    options.UseSqlServer(connectionString));
-builder.Services.AddSingleton<IAuthentication, Authentication>();
+
+builder.Services.AddScoped<IAuthentication, Authentication>();
 builder.Services.AddAuthentication();
 builder.Services.AddAuthorization();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -48,17 +72,26 @@ builder.Services.AddSwaggerGen(c =>
     c.OperationFilter<SecurityRequirementsOperationFilter>();
 });
 
+builder.Services.AddAuthentication(options =>
+{
+
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+builder.Services.AddScoped<IStripeService, StripeService>();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
  .AddJwtBearer(options =>
  {
      options.TokenValidationParameters = new TokenValidationParameters
      {
          ValidateIssuer = true,
-         ValidateAudience = false,
-         ValidateLifetime = false,
-         ValidateIssuerSigningKey = true,
+         ValidateAudience = true,
+         ValidateLifetime = true,
+         ValidateIssuerSigningKey =true,
          ValidIssuer = jwtIssuer,
-         ValidAudience = jwtIssuer,
+         ValidAudience = jwtAud,
 
          IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
      };
@@ -98,9 +131,9 @@ app.Use(async (context, next) =>
     await next();
 });
 
+
 app.UseCors("corspolicy");
 app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseAuthentication();
 
 app.UseAuthorization();

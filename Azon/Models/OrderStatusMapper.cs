@@ -1,6 +1,6 @@
 ﻿using static Azon.Models.Order;
 
-namespace ShoppingEcommerce.Models
+namespace Azon.Models
 {
     public static class OrderStatusMapper
     {

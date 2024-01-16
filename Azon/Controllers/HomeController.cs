@@ -19,7 +19,7 @@ namespace Azon.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class HomeController : ControllerBase
+    public class HomeController : ControllerBase, IHomeController
     {
 
         [HttpPost]
@@ -31,7 +31,7 @@ namespace Azon.Controllers
             /*            var chromeOptions = new ChromeOptions();
                         chromeOptions.AddArguments("headless");*/
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--headless=new");
+            /* options.AddArgument("--headless=new");*/
             options.AddArgument("--window-size=1920x1080"); // Set a reasonable window size
 
             // Disable GPU acceleration (some websites may behave better)
@@ -42,10 +42,17 @@ namespace Azon.Controllers
             options.AddUserProfilePreference("download.default_directory", "Downloads");
             options.AddUserProfilePreference("download.prompt_for_download", false);
             options.AddUserProfilePreference("safebrowsing.enabled", false);
-/*            options.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0");*/
+            /*            options.AddArgument("--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0");*/
             if (image != null && image.Length > 0)
             {
-                using (var driver = new ChromeDriver(chromeDriver,options))
+                string pathToDesigns = @"C:\Users\Gentrit\source\repos\Azon\Azon\react-app\src\designs\";
+
+                string uploadPathToDesigns = Path.Combine(pathToDesigns, image.FileName);
+                using (var fileStream = new FileStream(uploadPathToDesigns, FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+                using (var driver = new ChromeDriver(chromeDriver, options))
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
                     string downloadsFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
@@ -71,7 +78,7 @@ namespace Azon.Controllers
 
                     IWebElement fileInput = FindHiddenElementById(driver, ".dz-hidden-input");
 
-                   
+
                     fileInput.SendKeys(uploadPath);
                     Thread.Sleep(4000);
                     IWebElement download = FindDownloadButton(driver);
@@ -89,7 +96,7 @@ namespace Azon.Controllers
                     string downloadPath = Path.Combine(downloadsFolder, expectedFileName);
 
                     // Check if the file exists
-                 
+
                     if (System.IO.File.Exists(downloadPath))
                     {
                         /*FileResult pnImage =  PhysicalFile(downloadPath, "application/octet-stream", enableRangeProcessing: true);*/
@@ -102,10 +109,18 @@ namespace Azon.Controllers
                         IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
                         WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
                         // Use JavaScript to find the element even if it's hidden
-                        IWebElement filledLayers =  wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('button[name=\"algorithm\"][value=\"4\"]');"));
+                        IWebElement filledLayers = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('button[name=\"algorithm\"][value=\"4\"]');"));
                         filledLayers.Click();
-                        IWebElement colors = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"colors\"][title=\"4\"]');"));
-                        colors.Click();
+                        try
+                        {
+                            IWebElement colors = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"colors\"][title=\"4\"]');"));
+                            colors.Click();
+                        }
+                        catch (WebDriverTimeoutException ex)
+                        {
+
+                        }
+
                         string targetClass = "img-fluid";
                         var svgElement = wait.Until(d => d.FindElement(By.CssSelector($"svg.{targetClass}")));
                         Thread.Sleep(3000);
@@ -132,7 +147,7 @@ namespace Azon.Controllers
                     }
 
 
-                  
+
                 }
             }
             else
@@ -141,7 +156,7 @@ namespace Azon.Controllers
             }
         }
 
-     
+
 
         static void DownloadImage(string imageUrl, string outputPath)
         {
@@ -184,43 +199,11 @@ namespace Azon.Controllers
         static void SetFileInputWithJavaScript(IWebDriver driver, IWebElement element, string filePath)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-            
+
 
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetSvg()
-        {
-            string chromeDriver = @"C:\Users\Gentrit\source\repos\Azon\Azon\bin\Debug\net6.0";
-            string targetUrl = "https://www.vectorizer.io/images/4fXXGewPAAxLIt/x1080.html"; // Replace with the target webpage URL
-            string targetClass = "img-fluid"; // Replace with the desired SVG class
-            using (var driver = new ChromeDriver(chromeDriver))
-            {
-                // Navigate to the target URL
-                driver.Navigate().GoToUrl(targetUrl);
-
-                // Set up an explicit wait for a maximum of 10 seconds
-                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
-                // Wait for an SVG element with the specified class to be present on the page
-                var svgElement = wait.Until(d => d.FindElement(By.CssSelector($"svg.{targetClass}")));
-                Thread.Sleep(3000);
-
-                if (svgElement != null)
-                {
-                    // Return the inner HTML of the SVG element
-                    return Ok(svgElement.GetAttribute("innerHTML"));
-                }
-                else
-                {
-                    return NotFound();
-                }
 
 
-            }
-
-        }
-
-        
     }
 }

@@ -31,8 +31,8 @@ namespace Azon.Models
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var expires = DateTime.Now.AddDays(Convert.ToDouble(Convert.ToString("30")));
             var token = new JwtSecurityToken(
-                Convert.ToString("https://localhost:7247"),
-                Convert.ToString(""), claims, expires: expires, signingCredentials: creds);
+                Convert.ToString("localhost:7247"),
+                Convert.ToString("localhost:3000"), claims, expires: expires, signingCredentials: creds);
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
     }

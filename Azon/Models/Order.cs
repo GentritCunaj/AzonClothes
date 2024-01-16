@@ -28,6 +28,11 @@ public partial class Order
 
     public OrderStatusEnum OrderStatus { get; set; }
 
+    public string? PaymentIntentId { get; set; }
+    public string? Status { get; set; }
+
+    public bool PayOnDelivery { get; set; }
+
     [NotMapped]
     public string OrderStatusName { get; set; }
 
@@ -40,7 +45,8 @@ public partial class Order
     public decimal TotalAmount { get; set; }
 
     public Wishlist Wishlist { get; set; }
-    public virtual ApplicationUser Customer { get; set; } = null!;
+    public virtual ApplicationUser? Customer { get; set; }
 
     public virtual ShippingDetail? Shipping { get; set; }
+   
 }
