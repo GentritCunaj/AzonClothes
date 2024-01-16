@@ -1,0 +1,21 @@
+﻿body {
+}
+body {
+    background-color: #f0f0f0; /* Set your desired background color */
+    font-family: Arial, sans-serif; /* Set your desired font family */
+    margin: 0;
+    padding: 0;
+}
+
+.star-rating {
+    font-size: 24px;
+}
+
+.star {
+    cursor: pointer;
+    color: #ccc; /* Default star color */
+}
+
+    .star.filled {
+        color: #ffcc00; /* Filled star color */
+    }

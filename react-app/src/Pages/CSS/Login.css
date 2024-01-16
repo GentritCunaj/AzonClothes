@@ -1,0 +1,22 @@
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+
+.error {
+  color: #ff0000; /* Red text color for the error message */
+  font-size: 14px; /* Adjust the font size as needed */
+  margin-top: 5px; /* Add some space above the error message */
+}
+

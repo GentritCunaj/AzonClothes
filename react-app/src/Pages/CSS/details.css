@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat:300,400,700,800|Open+Sans:300');
+  main{
+    max-width: 1020px;
+    margin: 5% auto;
+  }
+  
+  .card{
+    box-shadow: 0 6px 6px rgba(#000, 0.3);
+    transition: 200ms;
+    background: #fff;
+    
+    .card__title{
+      display: flex;
+      align-items: center;
+      padding: 30px 40px;
+      
+      h3{
+        flex: 0 1 200px;
+        text-align: right;
+        margin: 0;
+        color: #252525;
+        font-family: sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: uppercase;
+      }
+      
+      .icon{
+        flex: 1 0 10px;
+        background: #115dd8;
+        color: #fff;
+        padding: 10px 10px;
+        transition: 200ms;
+        
+        > a{
+          color: #fff;
+        }
+        
+        &:hover{
+          background: #252525;
+        }
+      }
+    }
+    
+    .card__body{
+      padding: 0 40px;
+      display: flex;
+      flex-flow: row no-wrap;
+      margin-bottom: 25px;
+    }
+    .half{
+      box-sizing: border-box;
+      padding: 0 15px;
+      flex: 1 0 50%;
+    }
+    
+  
+    .featured_text h1{
+      margin: 0;
+      padding: 0;
+      font-weight: 800;
+      font-family: "Montserrat", sans-serif;
+      font-size: 64px;
+      line-height: 50px;
+      color: #181e28;
+    }
+        
+      .featured_text p{
+        margin: 0;
+        padding: 0;
+      }
+        .featured_text .sub{
+          font-family: "Montserrat", sans-serif;
+          font-size: 26px;
+          text-transform: uppercase;
+          color: #686e77;
+          font-weight: 300;
+          margin-bottom: 5px;
+        }
+        
+        .featured_text .price{
+          font-family: "Fjalla One", sans-serif;
+          color: #252525;
+          font-size: 26px;
+        }
+        
+      
+      
+      .image{
+        padding-top: 15px;
+        width: 100%;
+      }
+      .image img{
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    
+      
+      .description{
+        margin-bottom: 25px;
+        
+        p{
+          margin: 0;
+          font-family: "Open Sans", sans-serif;
+          font-weight: 300;
+          line-height: 27px;
+          font-size: 16px;
+          color: #555;
+        }
+      }
+      
+      span.stock{
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        color: #a1cc16;
+      }
+      
+      .reviews{
+        .stars{
+          display: inline-block;
+          list-style: none;
+          padding: 0;
+          
+          > li{
+            display: inline-block;
+            
+            .fa{
+              color: #f7c01b;
+            }
+          }
+        }
+        
+        > span{
+          font-family: "Open Sans", sans-serif;
+          font-size: 14px;
+          margin-left: 5px;
+          color: #555;
+        }
+      }
+    
+     
+    
+      .recommend{
+        flex: 1 0 10px;
+      }
+        .recommend p{
+          margin: 0;
+          font-family: "Montserrat", sans-serif;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 14px;
+          color: #555;
+        }
+       
+        .recommend h3{
+          margin: 0;
+          font-size: 20px;
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+          text-transform: uppercase;
+          color: #115dd8;
+        }
+      
+      
+      
+        
+    }
+
+    .card__footer{ 
+        padding: 30px 40px;
+        display: flex;
+   
+        justify-content: space-between;
+      }
+
+/* CSS */
+.button-65 {
+  appearance: none;
+  backface-visibility: hidden;
+  background-color: #2f80ed;
+  border-radius: 10px;
+  border-style: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Inter,-apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  height: 50px;
+  letter-spacing: normal;
+  line-height: 1.5;
+  outline: none;
+  overflow: hidden;
+  padding: 14px 30px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transform: translate3d(0, 0, 0);
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.button-65:hover {
+  background-color: #1366d6;
+  box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+  opacity: 1;
+  transform: translateY(0);
+  transition-duration: .35s;
+}
+
+.button-65:hover:after {
+  opacity: .5;
+}
+
+.button-65:active {
+  box-shadow: rgba(0, 0, 0, .1) 0 3px 6px 0, rgba(0, 0, 0, .1) 0 0 10px 0, rgba(0, 0, 0, .1) 0 1px 4px -1px;
+  transform: translateY(2px);
+  transition-duration: .35s;
+}
+
+.button-65:active:after {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  .button-65 {
+    padding: 14px 22px;
+    width: 176px;
+  }
+}
+

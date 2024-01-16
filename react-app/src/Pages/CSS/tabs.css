@@ -1,0 +1,77 @@
+.heading-design {
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: solid 1px #212121;
+    padding: 2rem;
+    transition: background-color 0.5s ease;
+}
+
+.heading-design:hover {
+    color: #eeeeee;
+    background-color: #6891c7;
+    border-bottom: solid 1px #6891c7;;
+}
+
+.heading-prog {
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: solid 1px #212121;
+    padding: 2rem;
+    transition: background-color 0.5s ease;
+    transition: color 0.5s ease;
+}
+
+.heading-prog:hover {
+    color: #eeeeee;
+    background-color: #474fc2;
+    border-bottom: solid 1px #474fc2;
+}
+
+.heading-music {
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: solid 1px #2a1879;
+    padding: 2rem;
+    transition: background-color 0.5s ease;
+}
+
+.heading-music:hover {
+    color: #eeeeee;
+    background-color: #4b3a9b;
+    border-bottom: solid 1px #4b3a9b;
+}
+
+.heading-payment {
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: solid 1px #212121;
+    padding: 2rem;
+    transition: background-color 0.5s ease;
+}
+
+
+.heading-payment:hover {
+    color: #fff;
+    background-color: #0f0e4e;
+    border-bottom: solid 1px #0f0e4e;
+}
+
+.tab-content {
+    display: none;
+}
+
+.left-content {
+    padding-left: 4rem;
+    padding-top: 4rem;
+    font-size: 3.75rem;
+}
+
+.right-content {
+    padding-left: 4rem;
+    padding-top: 4rem;
+}
+
+.img-custwidth {
+    padding-top: 4rem;
+    width: 512px;
+}
