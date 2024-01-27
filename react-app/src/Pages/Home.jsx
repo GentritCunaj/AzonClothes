@@ -82,7 +82,7 @@ function Home () {
         
             id="slideImg"
 src={banner2}
-style={{ width: '100%', height: 'auto',marginLeft:"-100px" }}
+
 />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>
@@ -101,7 +101,7 @@ style={{ width: '100%', height: 'auto',marginLeft:"-100px" }}
           <img
             id="slideImg"
             src={banner4}
-            style={{ width: '100%', height: 'auto',marginLeft:"-120px" }}
+           
           />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>

@@ -56,12 +56,12 @@ const Users = ()  => {
      <Navbar/>
      <Sidebar/>
         <main style={{marginTop: "58px"}}>
-  <div class="container pt-4">
+  <div id="dashboardContainer" class="container pt-4">
  
             <h1>Users table</h1>
 
            
-                <TableContainer sx={{width:1000,}}>
+                <TableContainer id="tableContainer" sx={{width:1000,}}>
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>

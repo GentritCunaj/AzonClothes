@@ -61,7 +61,7 @@ const Dashboard = ()  => {
      <Navbar/>
      <Sidebar/>
         <main style={{marginTop: "58px",}}>
-  <div class="container pt-4">
+  <div id="dashboardContainer" class="container pt-4">
   <a href="/createProduct" style={{ cursor: "pointer",width:"fit-content",fontSize:"1.5rem" }}>
     Create New Product
                 <FontAwesomeIcon icon={faAdd} size='xl' style={{marginLeft:"7px"}}/>
@@ -69,7 +69,7 @@ const Dashboard = ()  => {
             <h1>Products table</h1>
 
            
-                <TableContainer sx={{width:1000,}}>
+                <TableContainer id="tableContainer" sx={{width:1000,}}>
                     <Table stickyHeader>
                         <TableHead>
                             <TableRow>

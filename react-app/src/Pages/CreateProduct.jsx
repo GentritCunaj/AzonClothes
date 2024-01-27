@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState} from "react";
 import { useDispatch, useSelector, } from "react-redux";
 import { PostProduct } from '../Redux/data/action';
-
+import Navbar from "../Partials/Navbar"
 import placeholderImage from "../assets/placeholder.png";
 import Sidebar from '../Partials/Sidebar';
 
@@ -11,9 +11,6 @@ import Sidebar from '../Partials/Sidebar';
 const CreateProduct = () => {
    
     const dispatch = useDispatch();  
-   
-  
-
 
     const [formData, setFormData] = useState({
         name: '',
@@ -22,7 +19,7 @@ const CreateProduct = () => {
         description: '',
         size:'',
         colorHexCode:'',
-        imageFile:null
+        imageFile:''
       });
       
 
@@ -54,15 +51,19 @@ const CreateProduct = () => {
             newFormData.append('imageFile', formData.imageFile);
             newFormData.append('size',formData.size);
             newFormData.append('colorHexCode',formData.colorHexCode)
+            newFormData.append('isAvailable',true);
+            await dispatch(PostProduct(formData)).then((res) => 
+            {
+              console.log(res);
+            navigate(`/editProduct/${res.data.data.productId}`)}
+            );
+           
             
-            const response = await dispatch(PostProduct(formData));
-            const newProductId = response.data.productId;
-            navigate(`/editProduct/${newProductId}`);
-    
         }
     
     return (
         <>
+        <Navbar/>
         <Sidebar/>
          <main style={{marginTop: "58px"}}>
   <div class="container pt-4"></div>

@@ -160,7 +160,7 @@ namespace Azon.Controllers
                     {
                         string folder = "assets/";
                         string fullpath = folder += product.ColorVariants[i].Image.FileName;
-                        string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\Azon\react-app\src", fullpath);
+                        string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\react-app\src", fullpath);
                         var exists = System.IO.File.Exists(Path.Combine(pathFolder));
                         if (exists)
                         {
@@ -240,7 +240,7 @@ namespace Azon.Controllers
                 {
                     string folder = "assets/";
                     string fullpath = folder += productdto.ImageFile.FileName;
-                    string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\Azon\react-app\src", fullpath);
+                    string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\react-app\src", fullpath);
                     var exists = System.IO.File.Exists(Path.Combine(pathFolder));
                     if (exists)
                     {

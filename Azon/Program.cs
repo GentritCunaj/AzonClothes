@@ -15,7 +15,11 @@ using System.Configuration;
 using Azon.Controllers;
 using ClientShopping.Controllers;
 
-var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(new WebApplicationOptions
+{
+    EnvironmentName = Environments.Development
+});
+
 var connectionString = builder.Configuration.GetConnectionString("AzonContextConnection") ?? throw new InvalidOperationException("Connection string 'AzonContextConnection' not found.");
 
 
@@ -27,6 +31,7 @@ var jwtAud = builder.Configuration.GetSection("Jwt:Audience").Get<string>();
 builder.Services.AddDbContext<AzonContext>(options =>
     options.UseSqlServer(connectionString));
 
+builder.Services.BuildServiceProvider().GetService<AzonContext>().Database.Migrate();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped<IAuthController, AuthController>();
@@ -59,6 +64,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
+
+var clientId = builder.Configuration.GetSection("Authentication:ClientId").Get<string>();
+var clientSecret = builder.Configuration.GetSection("Authentication:ClientSecret").Get<string>();
 
 builder.Services.AddSwaggerGen(c =>
 {
@@ -97,6 +105,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
      };
  });
 
+builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+{
+    googleOptions.ClientId = clientId;
+    googleOptions.ClientSecret = clientSecret;
+});
+
+
 builder.Services.AddIdentityApiEndpoints<ApplicationUser>().AddRoles<IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<AzonContext>(); 
 builder.Services.AddCors(p => p.AddPolicy("corspolicy", build =>
 {
@@ -111,11 +126,20 @@ var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseSwagger();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    options.RoutePrefix = string.Empty;
+});
+
 
 app.MapIdentityApi<ApplicationUser>();
 app.UseHttpsRedirection();

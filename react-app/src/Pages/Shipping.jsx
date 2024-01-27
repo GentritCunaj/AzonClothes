@@ -79,6 +79,7 @@ const Shipping = () => {
 
     function updateLocation() {
       if (location.loaded){
+        console.log(location)
         setFormData({
           ...formData,
 
@@ -94,7 +95,7 @@ const Shipping = () => {
         <>
        
     <Navbar/>
-    <div style={{display:"flex",height:"100vh",marginBottom:"100px"}}>
+    <section id="checkoutSection" class="pt-5 pb-5">
         <div style={{marginLeft:"0",flex:"1"}} class="shippingContainer">
         <div class="wrapper">
           
@@ -120,7 +121,7 @@ const Shipping = () => {
   <h1>Shipping</h1>
   <p>Please enter your shipping details.</p>
   <hr />
-  <div class="form">
+  <div id="shippingForm" class="form">
   <div class="fields fields--2">
   <label class="field">
     <span class="field__label" for="firstName">First Name</span>
@@ -174,7 +175,7 @@ const Shipping = () => {
 </div>
 <div style={{flex:"1",marginTop:"100px"}} class="mapContainer">
 
-     <MapContainer style={{maxHeight:"500px",width:"100%"}} center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+     <MapContainer id="mapContainer" center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
       <TileLayer url={providers.maptiler.url} attribution={providers.maptiler.attribution}/>
       
      {location.loaded && !location.error && (
@@ -189,7 +190,7 @@ const Shipping = () => {
      <button  style={{marginTop:"2px"}} onClick={() => updateLocation()} class="button">Get Location</button>
      </div>
 
-</div>
+</section>
 <Footer/>
         </>
     )

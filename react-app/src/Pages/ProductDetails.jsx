@@ -14,12 +14,13 @@ import Footer from '../Partials/Footer';
 import { jwtDecode } from "jwt-decode";
 import * as types from '../Redux/data/types';
 import axios from 'axios';
-
+import useDragger from '../hooks/Draggable';
 import {
   
   faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+
 // import ReviewForm from './ReviewForm';
 
 const ProductDetails = () => {
@@ -37,6 +38,7 @@ const ProductDetails = () => {
   const [size,setSize] = useState('');
   const [stock,setStock] = useState(null);
 
+  useDragger('outputsvg');
   const cartButtons = document.querySelectorAll('.cart-button');
 
   cartButtons.forEach(button => {
@@ -141,7 +143,7 @@ const ProductDetails = () => {
       try {
         setBoolProgress(true);
        
-        let res = await axios.post( "https://localhost:7247/Home",formData,{
+        let res = await axios.post( `${process.env.REACT_APP_BASE_URL}/Home`,formData,{
           onUploadProgress:async (event) => {
             for (let progress = 10; progress <= 100; progress += 2) {
               setProgressBar(progress);
@@ -289,22 +291,19 @@ const ProductDetails = () => {
       <button style={{border:"3px solid red"}} type="button" onClick={handleClearDesign} class="btn-close" aria-label="Close"></button>
       </div> </div>
           </div>
-          <div class="image" style={{position:"relative"}}>
+          <div id="productImage" class="image" style={{position:"relative"}}>
   <img src={getProductImage(product.picturePath)} alt={product.name} class="product-image" />
+  
   {image != null && (
-    <svg id="outputsvg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" style={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-30%, -45%)',  // Center the SVG
-      cursor: 'move',
-      width: '100%',  // Responsive width
-      height: 'auto', // Responsive height
 
-      zIndex: 1,
-    }}>
+    <svg id="outputsvg"  style={{width: "fit-content", height: "fit-content",marginLeft:"150px",marginTop:"180px",maxHeight:"100px"}} preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" >
       {parse(image)}
+      <g id="corner">
+    <rect width="750" height="750" fill="blue" />
+  
+  </g>
     </svg>
+
   )}
 </div>
         </div>
@@ -353,7 +352,7 @@ const ProductDetails = () => {
          
 
           
-        <table class="table"> {colorVariant != null && (
+        <table id="sizes" class="table"> {colorVariant != null && (
   <thead>
     <tr>
      
@@ -384,11 +383,11 @@ const ProductDetails = () => {
 
 
 
-      <div style={{marginTop:"80px"}}>
+      <div id="final" style={{marginTop:"80px"}}>
         <h4>Final notes:</h4>
       <textarea
-        rows="4"
-        cols="50"
+        rows="3"
+        cols="40"
         placeholder="Changes to be made about your product here..."
        
         name="notes" value={formValues.notes} onChange={handleInputChange} 
@@ -398,7 +397,7 @@ const ProductDetails = () => {
       
     </div>
 
-     <div style={{marginTop:"100px"}}>
+     <div id="chooseFile" style={{marginTop:"100px"}}>
       
       
       <div class="input-group mb-3">
@@ -416,7 +415,7 @@ const ProductDetails = () => {
  )}
 
 </div>
-<p style={{fontSize:"1.1rem",position:"relative",left:"60px"}}>This is only a mockup not the final design !</p>
+<p id="mockup" style={{fontSize:"1.1rem",position:"relative",left:"60px"}}>This is only a mockup not the final design !</p>
       
      </div>
         </div>

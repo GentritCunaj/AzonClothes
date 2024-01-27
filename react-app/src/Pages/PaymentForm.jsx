@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import Navbar from "../Partials/Navbar";
 import Footer from "../Partials/Footer";
 import '../Pages/CSS/payment.css'
+;
 const CARD_OPTIONS = {
 	iconStyle: "solid",
 	style: {
@@ -57,7 +58,7 @@ export default function PaymentForm() {
     
       try {
          
-        const response = await axios.post("https://localhost:7247/Payments",
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Payments`,
         {
             amount:totalUnitPrices,
             guid:guid
@@ -91,7 +92,7 @@ export default function PaymentForm() {
            
             const {id} = paymentMethod;
             
-            const response = await axios.post("https://localhost:7247/Payments",
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/Payments`,
             {
                 amount:totalUnitPrices,
                 currency:"EUR",
@@ -149,7 +150,7 @@ export default function PaymentForm() {
         </div>
      </div>  
      <section class="payment-form dark">
-      <div class="container">
+      <div id="paymentContainer" class="container">
         <div class="block-heading">
           <h2>Confirm order and pay</h2>
           <p>Complete your purchase by providing payment details</p>

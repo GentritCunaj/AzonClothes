@@ -10,7 +10,7 @@ function Footer(){
     
      <div class="footer-div"> 
    <div class="explore">
-       <h1> explore azonclothes.com </h1>
+       <h1> explore azonclothes </h1>
        <ul id="online-list">
            <li><a href="#"> Jumpers </a></li>
            <li><a href="#"> Hoodies</a></li>

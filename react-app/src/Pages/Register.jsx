@@ -118,7 +118,7 @@ const Register = () => {
              
                       <div class="shippingContainer" style={{padding:0}}>
                          
-                                  <div className="form">
+                                  <div id="registerForm" className="form">
                                   
                                       <h2>Register</h2>
 

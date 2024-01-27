@@ -134,14 +134,15 @@ const Products = () => {
             <>
         <body class="sub_page" style={{zIndex:0}}>
   <section class="product_section layout_padding">
-    <div class="container" style={{maxWidth:"1320px"}}>
+    <div id="productsContainer" class="container" style={{maxWidth:"1320px",paddingBottom:"30px"}}>
     <form class="search_form">
-                          <input type="text" class="form-control" value={searchKeyword}
+                          <input id="search-product" type="text" class="form-control" value={searchKeyword}
                               onChange={handleSearch} placeholder="Search Product"></input>
                                <i style={{marginTop:"10px",marginLeft:"5px"}} class="fa fa-search" aria-hidden="true"></i>
 
-                               <p style={{marginLeft:"50px"}}> Sort by Price:</p>
+                               <p class="p-sort" style={{marginLeft:"50px"}}> Sort by Price:</p>
                         <select
+                        
                             id="sortDropdown"
                             value={priceSort}
                             onChange={(e) => handleSortChange(e.target.value)}
@@ -158,7 +159,7 @@ const Products = () => {
                             <option value="sort_high">High to Low</option>
                         </select> 
                            
-                               <a style={{ marginLeft: "auto", position: "relative" }} onClick={handleBackToListClick} href="/products"><i class="fa fa-arrow-left"></i><span>Back To Full List</span></a>
+                               <a id="backToFull" style={{ marginLeft: "auto", position: "relative" }} onClick={handleBackToListClick} href="/products"><i class="fa fa-arrow-left"></i><span>Back To Full List</span></a>
                                
                         </form>
                        

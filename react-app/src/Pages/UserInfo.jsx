@@ -8,6 +8,7 @@ import { PostProduct } from '../Redux/data/action';
 
 import placeholderImage from "../assets/placeholder.png";
 import Sidebar from '../Partials/Sidebar';
+import Navbar from '../Partials/Navbar';
 import { GetUserById } from '../Redux/auth/action';
 
 
@@ -19,6 +20,7 @@ const UserInfo = () => {
     
     return (
         <>
+        <Navbar/>
         <Sidebar/>
          <main style={{marginTop: "58px"}}>
   <div class="container pt-4"></div>

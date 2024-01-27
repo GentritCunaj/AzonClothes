@@ -31,7 +31,7 @@ function Navbar(){
                                 
                                
                                 <div style={{display:"flex",justifyContent:"space-between"}} class="collapse navbar-collapse" id="navbarSupportedContent">
-                                    <ul style={{marginLeft:"370px"}} class="navbar-nav ">
+                                    <ul class="navbar-nav ">
                                         <li class="nav-item ">
                                             <a class="nav-link" href="/"><span>Home</span> </a>
                                         </li>

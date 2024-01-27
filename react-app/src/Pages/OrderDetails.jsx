@@ -58,11 +58,11 @@ const OrderDetails = () => {
       
 
       
-  <div class="container" style={{maxWidth:"1100px",display:"flex",borderTop:"2px solid black",borderBottom:"2px solid black"}} >
+  <div id="orderContainer" class="container"  >
 
        
 
-         <div style={{borderLeft:"2px solid black",paddingTop:"30px"}} class="row w-50">
+         <div id="leftOrder" class="row w-50">
          
          {order != null && order.orderStatusName == 'Cancelled' && (
           <img src={cancelled}  className="cancelled-sign"
@@ -124,7 +124,7 @@ const OrderDetails = () => {
         
         <div style={{marginLeft:"50px"}} class="row w-50">
       
-        <div class="form" style={{display:"flow",borderRight:"2px solid black",paddingTop:"30px"}}>
+        <div class="form" id="formOrder">
         <h4 style={{marginBottom:"20px"}}>Shipping and Payment Details</h4>
  {order != null && (
   <>
@@ -149,13 +149,14 @@ const OrderDetails = () => {
      <span class="field__label" for="country">Country</span>
      <input class="field__input" type="text" name="country"  value={order.shipping.country}/>
    </label>
-   <label style={{marginBottom:"20px"}}  class="field">
+   
+  
+  
+ </div>
+ <label style={{marginBottom:"20px"}}  class="field">
      <span class="field__label" for="info">Info</span>
      <input class="field__input" type="text" name="info"  value={order.shipping.info}/>
-   </label>
-  
-  
- </div></>
+   </label></>
  )}
    
 

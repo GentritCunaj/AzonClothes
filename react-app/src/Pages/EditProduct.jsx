@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash,faAdd } from '@fortawesome/free-solid-svg-icons';
 import placeholderImage from "../assets/placeholder.png";
 import Sidebar from '../Partials/Sidebar';
-
+import Navbar from '../Partials/Navbar';
 const EditProduct = () => {
      const { id } = useParams();
      const [isDataFetched, setIsDataFetched] = useState(false);    
@@ -292,6 +292,7 @@ const EditProduct = () => {
     
     return (
         <>
+        <Navbar/>
         <Sidebar/>
   
         {loading  ? (

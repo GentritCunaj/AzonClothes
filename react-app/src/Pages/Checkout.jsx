@@ -40,6 +40,7 @@ const Checkout = () => {
     const changeP = (e, productId) => {
         const newCount = Math.max(1, parseInt(e.target.value, 10));
         setProductQuantities(prevQuantities => ({ ...prevQuantities, [productId]: newCount }));
+        
     }
     
     const handleChange = (productId,count) => {
@@ -72,7 +73,7 @@ const Checkout = () => {
           ) : (
             <>
         <section class="pt-5 pb-5">
-  <div class="container" style={{maxWidth:"1100px"}}>
+  <div id="checkoutContainer" class="container" style={{maxWidth:"1100px"}}>
   <div style={{marginLeft:"200px"}} class="checkoutwrapper">
          <div class="margin-area">
             <div class="dot one">1</div>
@@ -104,7 +105,6 @@ const Checkout = () => {
             {selectedProducts != null &&  selectedProducts.items != null && selectedProducts.items.map((el) => {
                 return (
         <>
-        <h1>{el.product.name}</h1>
        
               <thead>
                     <tr>
@@ -124,15 +124,8 @@ const Checkout = () => {
                                 <div class="image">
                                 <img src={getProductImage(el.product.colorVariants[0].picturePath)} alt={el.product.name} style={{marginLeft:"-30px"}} class="product-image" />
                                 { el.product.vector != null  && (
-                                        <svg class="img-fluid" id="outputsvg" xmlns="http://www.w3.org/2000/svg" viewBox = {"0 0 10800 7200"} style={{
-                                        position: 'absolute',
-                                       
-                                        transform: 'translate(-122%, 50%)', // Center the SVG
-                                        cursor: 'move',
-                                      
-                                        height: '50px',
-                                        zIndex: 1, // Make sure the SVG is on top of the image
-                                        }} >
+                                        <svg class="img-fluid" xmlns="http://www.w3.org/2000/svg" viewBox = {"0 0 10800 7200"} id="checkoutsvg"
+                                         >
                                             {parse(el.product.vector)}
                                         </svg>
                                     
@@ -145,7 +138,7 @@ const Checkout = () => {
                                 <div style={{display:"flex",justifyContent:"space-around"}} class="col-md-9 text-left mt-sm-2">
                                     <h4>{el.product.name}</h4>
                                    
-                                    <p style={{fontSize:"1.5rem"}}>{el.product.colorVariants[0].stockOptions[0].size}</p>
+                                    <p id="sizeP" style={{fontSize:"1.5rem"}}>{el.product.colorVariants[0].stockOptions[0].size}</p>
                                     
                                 </div>
                                 
@@ -156,15 +149,16 @@ const Checkout = () => {
                 
                         <input
                                                     type="number"
+                                                   
                                                     class="form-control form-control-lg text-center"
-                                                    value={productQuantities[el.product.productId] || el.count}
+                                                    value={productQuantities[el.product.productId] !== undefined ? productQuantities[el.product.productId] : el.count}
                                                     onChange={(e) => changeP(e, el.product.productId)}
                                                 />
                         </td>
                         <td class="actions" data-th="">
                             <div class="text-right">
                                 <button onClick={() => handleChange(el.product.productId, productQuantities[el.product.productId])} class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                                <i class="fa fa-edit" ></i>
                                 </button>
 
                                 <button onClick={() => handleDelete(el.wishlistItemId)} class="btn btn-white border-secondary bg-white btn-md mb-2">
@@ -182,12 +176,12 @@ const Checkout = () => {
             </table>
             <div style={{float:"inline-end"}} class="float-right ">
                 <h4>Total:</h4>
-                <h1>{totalUnitPrices} €</h1>
+                <h1>{totalUnitPrices}€</h1>
             </div>
         </div>
     </div>
     <div class="row mt-4 d-flex align-items-center">
-        <div class="col-sm-6 order-md-2 text-right">
+        <div id="checkoutButton" class="col-sm-6 order-md-2 text-right">
             <a href="/Shipping" style={{width:"inherit"}} class="btn btn-dark btn-lg mb-4 ">Checkout</a>
         </div>
         <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">

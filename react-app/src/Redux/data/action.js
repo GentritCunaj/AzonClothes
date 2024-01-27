@@ -1,7 +1,7 @@
 ﻿import * as types from './types';
 import axios from "axios";
 const token1 = localStorage.getItem("azontoken");
-
+;
 const config = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
@@ -24,7 +24,7 @@ export const GetImage = () => async (dispatch) => {
     try {
         dispatch({ type: types.GET_IMAGE_REQUEST });
         const res = await axios.get(
-            "https://localhost:7247/Home"
+            `${process.env.REACT_APP_BASE_URL}/Home`
         );
 
         console.log(res);
@@ -61,8 +61,12 @@ export const PostProduct = (data) => async (dispatch) => {
     try {
         dispatch({ type: types.POST_PRODUCT_REQUEST });
         const res = await axios.post(
-            "https://localhost:7247/Products",data,
-            config
+            `${process.env.REACT_APP_BASE_URL}/Products`,data,
+            {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
         );
 
         console.log(res);
@@ -86,7 +90,7 @@ export const DeleteProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: types.DELETE_PRODUCT_REQUEST });
         const res = await axios.delete(
-            `https://localhost:7247/Products/${id}`
+            `${process.env.REACT_APP_BASE_URL}/Products/${id}`
         );
     
       
@@ -112,7 +116,7 @@ export const GetSingleProduct = (id) => async (dispatch) => {
     try {
         dispatch({ type: types.GET_PRODUCTS_DETAILS_REQUEST });
         const res = await axios.get(
-            `https://localhost:7247/Products/${id}`
+            `${process.env.REACT_APP_BASE_URL}/Products/${id}`
         );
     
         console.log(res);
@@ -137,7 +141,7 @@ export const GetAllProducts = () => async (dispatch) => {
     try {
         dispatch({ type: types.GET_ALL_PRODUCTS_REQUEST });
         const res = await axios.get(
-            "https://localhost:7247/Products/all"
+            `${process.env.REACT_APP_BASE_URL}/Products/all`
         );
     
         console.log(res);
@@ -164,7 +168,7 @@ export const GetProducts = () => async (dispatch) => {
     try {
         dispatch({ type: types.GET_PRODUCTS_REQUEST });
         const res = await axios.get(
-            "https://localhost:7247/Products"
+            `${process.env.REACT_APP_BASE_URL}/Products`
         );
     
         console.log(res);
@@ -189,7 +193,7 @@ export const EditProductById = (id,data) => async (dispatch) => {
     try {
         dispatch({ type: types.EDIT_PRODUCT_REQUEST });
         const res = await axios.put(
-            `https://localhost:7247/Products/edit/${id}`,data,
+            `${process.env.REACT_APP_BASE_URL}/Products/edit/${id}`,data,
             config
         );
     
@@ -216,7 +220,7 @@ export const DeleteCV = (id) => async (dispatch) => {
 
         dispatch({type:types.DELETE_CV_REQUEST});
         const res = await axios.delete(
-            `https://localhost:7247/Products/cv/${id}`,
+            `${process.env.REACT_APP_BASE_URL}/Products/cv/${id}`,
             {
                 headers: {
                   Authorization: "Bearer " + token1
@@ -255,7 +259,7 @@ export const DeleteWishlist = (data) => async (dispatch) => {
 
         dispatch({type:types.ADD_TO_WISHLIST_REQUEST});
         const res = await axios.delete(
-            `https://localhost:7247/WishList/${data.id}`,
+            `${process.env.REACT_APP_BASE_URL}/WishList/${data.id}`,
             {
                 headers: {
                   Authorization: `Bearer ${token1}`,
@@ -295,7 +299,7 @@ export const AddToWishlist = (data) => async (dispatch) => {
 
         dispatch({type:types.ADD_TO_WISHLIST_REQUEST});
         const res = await axios.post(
-            `https://localhost:7247/WishList`,data,
+            `${process.env.REACT_APP_BASE_URL}/WishList`,data,
             bearer
             
         );
@@ -330,7 +334,7 @@ export const GetWishlist = (data) => async (dispatch) => {
 
         dispatch({type:types.GET_WISHLIST_REQUEST});
         const res = await axios.post(
-            "https://localhost:7247/WishList/getWishlist",
+            `${process.env.REACT_APP_BASE_URL}/WishList/getWishlist`,
             {
                 guid: data.guid,  // Directly pass the guid
             },
@@ -368,7 +372,7 @@ export const GetShippingDetails = (data) => async (dispatch) => {
 
         dispatch({type:types.GET_SHIPPING_REQUEST});
         const res = await axios.post(
-            "https://localhost:7247/Shipping/getShipping",
+            `${process.env.REACT_APP_BASE_URL}/Shipping/getShipping`,
             {
                 guid: data.guid,  // Directly pass the guid
             },
@@ -407,7 +411,7 @@ export const AddShippingDetails = (data) => async (dispatch) => {
 
         dispatch({type:types.ADD_SHIPPING_REQUEST});
         const res = await axios.post(
-            "https://localhost:7247/Shipping",data,
+            `${process.env.REACT_APP_BASE_URL}/Shipping`,data,
             bearer
             
         );
@@ -461,7 +465,7 @@ export const UpdateOrderStatus = (data) => async (dispatch) => {
 
         dispatch({type:types.UPDATE_ORDER_REQUEST});
         const res = await axios.post(
-            "https://localhost:7247/Order/updateStatus",data,
+            `${process.env.REACT_APP_BASE_URL}/Order/updateStatus`,data,
             bearer
         );
     
@@ -494,7 +498,7 @@ export const GetOrderDetails = () => async (dispatch) => {
 
         dispatch({type:types.GET_ORDERS_REQUEST});
         const res = await axios.get(
-            "https://localhost:7247/Order",
+            `${process.env.REACT_APP_BASE_URL}/Order`,
             bearer
             
         );
@@ -528,7 +532,7 @@ export const GetAllOrders = () => async (dispatch) => {
 
         dispatch({type:types.GET_ALL_ORDERS_REQUEST});
         const res = await axios.get(
-            "https://localhost:7247/Order/allOrders",
+            `${process.env.REACT_APP_BASE_URL}/Order/allOrders`,
            bearer
         );
     
@@ -561,7 +565,7 @@ export const GetOrderDetailsById = (id) => async (dispatch) => {
 
         dispatch({type:types.GET_ORDER_REQUEST});
         const res = await axios.get(
-            `https://localhost:7247/Order/${id}`,
+            `${process.env.REACT_APP_BASE_URL}/Order/${id}`,
             bearer
             
         );
@@ -595,7 +599,7 @@ export const CancelOrdersById = (data) => async (dispatch) => {
 
         dispatch({type:types.GET_CANCELLED_ORDER_REQUEST});
         const res = await axios.post(
-            `https://localhost:7247/Order/cancel`,data,
+            `${process.env.REACT_APP_BASE_URL}/Order/cancel`,data,
             bearer
             
         );

@@ -77,12 +77,12 @@ function CLogin() {
               </div>
           ) : (
 
-              <><section class="vh-100">
+              <><section id="loginSection" class="vh-100">
 
-                      <div class="container-fluid h-custom">
-                          <div class="row d-flex justify-content-center align-items-center h-100">
-                              <div style={{position:"relative",left:"200px"}} class="col-md-9 col-lg-6 col-xl-5">
-                                  <img src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg"
+                      <div  class="container-fluid h-custom">
+                          <div id="loginContainer" class="row d-flex justify-content-center align-items-center h-100">
+                              <div id="imageContainer" style={{position:"relative",left:"200px"}} class="col-md-9 col-lg-6 col-xl-5">
+                                  <img id="loginImage" src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signin-image.jpg"
                                       class="img-fluid" alt="Sample image" />
                               </div>
                               <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">

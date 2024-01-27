@@ -1,11 +1,12 @@
 import * as types from './types';
 import axios from "axios";
 const token = localStorage.getItem("azontoken");
+;
 export const Login = (email,password) => async (dispatch) => {
     try {
         dispatch({ type: types.LOGIN_CLIENT_REQUEST });
         const res = await axios.post(
-            "https://localhost:7247/Auth/loginCustomer", {email,password}
+            `${process.env.REACT_APP_BASE_URL}/Auth/loginCustomer`, {email,password}
         );
 
         console.log(res);
@@ -34,7 +35,7 @@ export const UpdateInfo = (data) => async (dispatch) => {
     try {
         dispatch({ type: types.UPDATE_INFO_REQUEST });
         const res = await axios.put(
-            "https://localhost:7247/Auth/info", data,
+            `${process.env.REACT_APP_BASE_URL}/Auth/info`, data,
             {
                 headers: {
                     Authorization: "Bearer " + token
@@ -68,7 +69,7 @@ export const ChangeRole = (data) => async (dispatch) => {
     try {
         dispatch({ type: types.SET_USER_ROLE_REQUEST });
         const res = await axios.post(
-            "https://localhost:7247/Auth/userRole", 
+            `${process.env.REACT_APP_BASE_URL}/Auth/userRole`, 
             new URLSearchParams({ email: data.email }),
             {
                 headers: {
@@ -106,7 +107,7 @@ export const DeleteUser = (data) => async (dispatch) => {
     try {
         dispatch({ type: types.DELETE_USER_REQUEST });
         const res = await axios.delete(
-            "https://localhost:7247/Auth",{
+            `${process.env.REACT_APP_BASE_URL}/Auth`,{
                 data:{email:data.email},
     
                 headers: {
@@ -142,7 +143,7 @@ export const GetUserById = (id) => async (dispatch) => {
     try {
         dispatch({ type: types.GET_USER_REQUEST });
         const res = await axios.get(
-            `https://localhost:7247/Auth/userInfo/${id}`
+            `${process.env.REACT_APP_BASE_URL}/Auth/userInfo/${id}`
         );
 
         dispatch({
@@ -170,7 +171,7 @@ export const GetInfo = () => async (dispatch) => {
     try {
         dispatch({ type: types.GET_INFO_REQUEST });
         const res = await axios.get(
-            "https://localhost:7247/Auth/info", 
+            `${process.env.REACT_APP_BASE_URL}/Auth/info`, 
             {
                 headers: {
                     Authorization: "Bearer " + token
@@ -204,7 +205,7 @@ export const GetAllUsers = () => async (dispatch) => {
     try {
         dispatch({ type: types.GET_USERS_REQUEST });
         const res = await axios.get(
-            "https://localhost:7247/Auth/allUsers", 
+            `${process.env.REACT_APP_BASE_URL}/Auth/allUsers`, 
             {
                 headers: {
                     Authorization: "Bearer " + token
@@ -240,7 +241,7 @@ export const RegisterCustomer = (data) => async (dispatch) => {
     try {
         dispatch({ type: types.REGISTER_CLIENT_REQUEST });
         const res = await axios.post(
-            "https://localhost:7247/Auth/Register", data
+            `${process.env.REACT_APP_BASE_URL}/Auth/Register`, data
         );
 
         console.log(res);
