@@ -284,8 +284,8 @@ namespace Azon.Controllers
 
         private IWebDriver GetDriverAsync(ChromeOptions options)
         {
-            var driverPath = "C:\\home\\site\\wwwroot\\chromedriver\\win64\\120.0.6099.109";
-            return new ChromeDriver(driverPath, options);
+/*            var driverPath = "C:\\home\\site\\wwwroot\\chromedriver\\win64\\120.0.6099.109";*/
+            return new ChromeDriver(options);
         }
 
         static void DownloadImage(string imageUrl, string outputPath)
