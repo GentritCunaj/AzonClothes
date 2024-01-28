@@ -4,22 +4,10 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-	  <InvariantGlobalization>false</InvariantGlobalization>
-	  <OutputType>WinExe</OutputType>
-	  <UserSecretsId>ccee2181-4d99-4b7d-a57b-0d2ab942ba71</UserSecretsId>
-	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	  <InvariantGlobalization>false</InvariantGlobalization	
+>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>True</Optimize>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="react-app\**" />
-    <Content Remove="react-app\**" />
-    <EmbeddedResource Remove="react-app\**" />
-    <None Remove="react-app\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetSeleniumExtras.PageObjects" Version="3.11.0" />
