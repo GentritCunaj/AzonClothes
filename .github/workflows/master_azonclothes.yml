@@ -54,4 +54,4 @@ jobs:
           app-name: 'AzonClothes'
           slot-name: 'Production'
           package: .
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_049D9DECA58E4B6D8552BDC2D991795E }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2B178CB74359497F8860F58425588D0F }}
