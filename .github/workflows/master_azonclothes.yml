@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy ASP.Net Core app to Azure Web App - AzonClothes
 
 on:
@@ -41,7 +38,7 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
+      id-token: write # This is required for requesting the JWT
 
     steps:
       - name: Download artifact from build job
@@ -52,9 +49,8 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_CFCB573A443A46359223C002C639C1CD }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6C49D444470A4A5DB35838FECB27B61A }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_7A303F49F7214B5A9F85B1F2974968E5 }}
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          use-appservice-principal: false
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -63,4 +59,3 @@ jobs:
           app-name: 'AzonClothes'
           slot-name: 'Production'
           package: .
-          
