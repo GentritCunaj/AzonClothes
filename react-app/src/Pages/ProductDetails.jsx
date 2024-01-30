@@ -143,7 +143,7 @@ const ProductDetails = () => {
       try {
         setBoolProgress(true);
        
-        let res = await axios.post( `${process.env.REACT_APP_BASE_URL}/Home`,formData,{
+        let res = await axios.post(`${process.env.REACT_APP_VM_URL}/Home`,formData,{
           onUploadProgress:async (event) => {
             for (let progress = 10; progress <= 100; progress += 2) {
               setProgressBar(progress);

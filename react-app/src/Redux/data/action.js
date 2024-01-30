@@ -1,7 +1,7 @@
 ﻿import * as types from './types';
 import axios from "axios";
 const token1 = localStorage.getItem("azontoken");
-;
+
 const config = {
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

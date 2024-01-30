@@ -70,5 +70,13 @@
     "customize-cra": "^1.0.0",
     "dotenv": "^16.3.1",
     "react-app-rewired": "^2.2.1"
+  },
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false
   }
 }
