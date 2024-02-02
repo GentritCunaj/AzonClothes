@@ -98,7 +98,7 @@ const Checkout = () => {
             {selectedProducts != null && (
             <p class="mb-5 text-center">
                
-                <i style={{fontSize:"1.5rem"}} class="text-info font-weight-bold">{selectedProducts.items.length} </i>&nbsp; items in your cart</p> )} 
+                <i style={{fontSize:"1.5rem"}} class="text-info font-weight-bold">{ selectedProducts != null && selectedProducts.items != null && selectedProducts.items.length > 0 && (selectedProducts.items.length)} </i>&nbsp; items in your cart</p> )} 
             <table id="shoppingCart" class="table table-condensed table-responsive">
                 
 

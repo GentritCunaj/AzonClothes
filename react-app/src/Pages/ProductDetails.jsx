@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useMemo} from 'react';
 import { useParams } from 'react-router-dom';
 import html2canvas from 'html2canvas';
 import { useState,useEffect,useRef } from "react";
@@ -197,20 +197,14 @@ const ProductDetails = () => {
         setStock(initialStock);
       }
     }, [id]);
-  const getProductImage = () => {
-    // Assuming product images have the same name as the product
-    // and are in the /assets/images folder
-    const selectedColorVariant = product.colorVariants.find((cv) => cv.hexCode === selectedColor);
-    console.log(selectedColorVariant)
-    try {
-     
-
-      return selectedColorVariant ? require(`../${colorVariant.picturePath}`) : require(`../${product.picturePath}`);
-    }
-    catch(err){
+    const getProductImage = useMemo(() => {
+      const selectedColorVariant = product.colorVariants.find((cv) => cv.hexCode === selectedColor);
+      try {
+        return selectedColorVariant ? require(`../${colorVariant.picturePath}`) : require(`../${product.picturePath}`);
+      } catch (err) {
         return placeholderImage;
-    }
-    };
+      }
+    }, [product, selectedColor, colorVariant]);
 
         // Assuming reviewsRating is an array of ratings
         // const averageRating = reviewsrating != null && reviewsrating.length > 0
@@ -292,11 +286,11 @@ const ProductDetails = () => {
       </div> </div>
           </div>
           <div id="productImage" class="image" style={{position:"relative"}}>
-  <img src={getProductImage(product.picturePath)} alt={product.name} class="product-image" />
+  <img src={getProductImage} alt={product.name} class="product-image" />
   
   {image != null && (
 
-    <svg id="outputsvg"  style={{width: "fit-content", height: "fit-content",marginLeft:"150px",marginTop:"180px",maxHeight:"100px"}} preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" >
+    <svg id="outputsvg"  style={{width: "fit-content", height: "fit-content",marginLeft:"180px",marginTop:"180px",maxHeight:"100px"}} preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" >
       {parse(image)}
       <g id="corner">
     <rect width="750" height="750" fill="blue" />

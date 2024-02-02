@@ -20,6 +20,7 @@ using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using System.Collections.ObjectModel;
+using SeleniumExtras.WaitHelpers;
 
 namespace Azon.Controllers
 {
@@ -42,7 +43,8 @@ namespace Azon.Controllers
             ChromeOptions options = new ChromeOptions();
 
             options.AddArgument("--no-sandbox");
-         /*   options.AddArgument("--headless=new");*/
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--headless=new");
             options.AddArgument("--ignore-ssl-errors=true");
             options.AddArgument("--ignore-certificate-errors");
 
@@ -174,27 +176,41 @@ namespace Azon.Controllers
                             // Use JavaScript to find the element even if it's hidden
                             IWebElement filledLayers = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('button[name=\"algorithm\"][value=\"4\"]');"));
                             filledLayers.Click();
+                            Thread.Sleep(2000);
                             try
                             {
                                 IWebElement colors = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"colors\"][title=\"4\"]');"));
                                 colors.Click();
+                                Thread.Sleep(2000);
                             }
                             catch (WebDriverTimeoutException ex)
                             {
 
                             }
-                            IWebElement semanticSegmentationTab = _webDriver.FindElement(By.CssSelector("#semanticsegmentationtabbtn.nav-link"));
-                            if (semanticSegmentationTab == null)
-                            {
-                                IWebElement background = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"bgremoveborder\"]');"));
-                                background.Click();
+                            IWebElement semanticSegmentationTab = (IWebElement)((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.querySelector('#semanticsegmentationtabbtn.nav-link');");
 
-                                IWebElement saveButton = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('.btn.btn-primary.btn-sm.save');"));
-                                saveButton.Click();
+                            // Check if the display property is set to "none" using JavaScript
+                            bool isObjectsDisplayNone = (bool)((IJavaScriptExecutor)_webDriver).ExecuteScript("return window.getComputedStyle(arguments[0]).display === 'none';", semanticSegmentationTab);
+                            if (isObjectsDisplayNone)
+                            {
+                                IWebElement backgroundTabBtn = (IWebElement)((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.getElementById('backgroundtabbtn');");
+
+                                // Click on the element
+                                backgroundTabBtn.Click();
+                                IWebElement background = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"bgremoveborder\"]');"));
+
+                                // Toggle the checked property using JavaScript
+                                js.ExecuteScript("arguments[0].checked = !arguments[0].checked;", background);
+                                Thread.Sleep(1000);
+
+                                ReadOnlyCollection<IWebElement> saveBackButtons = (ReadOnlyCollection<IWebElement>)js.ExecuteScript("return document.querySelectorAll('.btn.btn-primary.btn-sm.save');");
+                                saveBackButtons[1].Click();
+                                Thread.Sleep(2000);
                             }
                             else
                             {
                                 semanticSegmentationTab.Click();
+                                Thread.Sleep(2000);
                                 int maxCheckboxCount = 4; // You can adjust this based on your requirements
                                 bool checkboxFound = true;
 
@@ -209,6 +225,7 @@ namespace Azon.Controllers
                                         if (checkbox != null)
                                         {
                                             checkbox.Click();
+                                            Thread.Sleep(1000);
                                         }
                                         else
                                         {
@@ -237,22 +254,44 @@ namespace Azon.Controllers
                                 }
                             }
 
-                            Thread.Sleep(5000);
+                            WebDriverWait wait1 = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(100));
                             string targetClass = "img-fluid";
-                            var svgElement = wait.Until(d => d.FindElement(By.CssSelector($"svg.{targetClass}")));
-                           
-                            System.IO.File.Delete(filePath);
-                           
-                            if (svgElement != null)
+                            Thread.Sleep(3000);
+                            bool isDisplayNone = wait1.Until(d =>
                             {
-                                var innerHtml = svgElement.GetAttribute("innerHTML");
-                                // Return the inner HTML of the SVG element
-                                return Ok(svgElement.GetAttribute("innerHTML"));
+                                IReadOnlyCollection<IWebElement> elements = d.FindElements(By.CssSelector($"div.progress"));
+
+                                if (elements.Count > 0)
+                                {
+                                    IWebElement firstElement = elements.First();
+                                    return firstElement.GetCssValue("display").Equals("none", StringComparison.OrdinalIgnoreCase);
+                                }
+
+                                // If no elements found, consider it as if it's already invisible
+                                return true;
+                            });
+                            if (isDisplayNone)
+                            {
+                                var svgElement = wait.Until(d => d.FindElement(By.CssSelector($"svg.{targetClass}")));
+
+                                System.IO.File.Delete(filePath);
+
+                                if (svgElement != null)
+                                {
+                                    var innerHtml = svgElement.GetAttribute("innerHTML");
+                                    // Return the inner HTML of the SVG element
+                                    return Ok(svgElement.GetAttribute("innerHTML"));
+                                }
+                                else
+                                {
+                                    return NotFound();
+                                }
                             }
                             else
                             {
                                 return NotFound();
                             }
+                           
 
 
 
