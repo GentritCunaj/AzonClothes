@@ -17,6 +17,7 @@ import axios from 'axios';
 import useDragger from '../hooks/Draggable';
 import {
   
+  faArrowDown,
   faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -290,10 +291,16 @@ const ProductDetails = () => {
   
   {image != null && (
 
-    <svg id="outputsvg"  style={{width: "fit-content", height: "fit-content",marginLeft:"180px",marginTop:"180px",maxHeight:"100px"}} preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" >
+    <svg id="outputsvg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 21000 12000" >
       {parse(image)}
       <g id="corner">
-    <rect width="750" height="750" fill="blue" />
+    {/* <rect width="750" height="750" fill="blue">
+    </rect> */}
+     <foreignObject x="50%" y="30%" width="750" height="750">
+
+            <FontAwesomeIcon icon={faArrowDown} size="xl" style={{fontSize:"750px"}}/>
+   
+        </foreignObject>
   
   </g>
     </svg>
@@ -301,7 +308,7 @@ const ProductDetails = () => {
   )}
 </div>
         </div>
-        <div class="half">
+        <div id="rightHalf" class="half">
 
           <div class="description">
           <p>{product.description}</p>
@@ -379,7 +386,8 @@ const ProductDetails = () => {
 
       <div id="final" style={{marginTop:"80px"}}>
         <h4>Final notes:</h4>
-      <textarea
+      <textarea 
+      class="textArea"
         rows="3"
         cols="40"
         placeholder="Changes to be made about your product here..."
@@ -409,7 +417,7 @@ const ProductDetails = () => {
  )}
 
 </div>
-<p id="mockup" style={{fontSize:"1.1rem",position:"relative",left:"60px"}}>This is only a mockup not the final design !</p>
+<p id="mockup" style={{fontSize:"1.1rem",position:"relative",left:"60px"}}>This is only a mockup not the final design ! You can move,resize and place the design freely.</p>
       
      </div>
         </div>

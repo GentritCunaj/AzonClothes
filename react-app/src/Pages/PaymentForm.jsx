@@ -168,9 +168,8 @@ export default function PaymentForm() {
 
               <span class="price">${el.product.price}</span>
              
-              <p class="item-name">{el.product.name}</p>
-              
-              <p style={{fontSize:"1.5rem"}}>{el.product.colorVariants[0].stockOptions[0].size}</p>
+              <p class="item-name">{el.product.name} &nbsp;&nbsp;&nbsp; {el.product.colorVariants[0].stockOptions[0].size}</p>
+     
             </div>
            
                   

@@ -30,7 +30,7 @@ function Navbar(){
                                </div>
                                 
                                
-                                <div style={{display:"flex",justifyContent:"space-between"}} class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <div style={{display:"flex",justifyContent:"space-between"}} id="navbarContainer" class="collapse navbar-collapse" >
                                     <ul class="navbar-nav ">
                                         <li class="nav-item ">
                                             <a class="nav-link" href="/"><span>Home</span> </a>

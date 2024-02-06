@@ -21,6 +21,9 @@ using WebDriverManager;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using System.Collections.ObjectModel;
 using SeleniumExtras.WaitHelpers;
+using NuGet.ContentModel;
+using Azon.Models;
+using OpenQA.Selenium.Interactions;
 
 namespace Azon.Controllers
 {
@@ -166,17 +169,20 @@ namespace Azon.Controllers
                         {
                             /*FileResult pnImage =  PhysicalFile(downloadPath, "application/octet-stream", enableRangeProcessing: true);*/
                             _webDriver.Navigate().GoToUrl("https://www.vectorizer.io");
-                            Thread.Sleep(3000);
+                            Thread.Sleep(2000);
                             IWebElement vectorizerInput = FindHiddenElementById(_webDriver, "#file");
                             vectorizerInput.SendKeys(filePath);
-                            Thread.Sleep(4000);
+                            Thread.Sleep(7000);
 
                             IJavaScriptExecutor js = (IJavaScriptExecutor)_webDriver;
                             WebDriverWait wait = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(10));
+   
+
+                            Thread.Sleep(4000);
                             // Use JavaScript to find the element even if it's hidden
                             IWebElement filledLayers = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('button[name=\"algorithm\"][value=\"4\"]');"));
                             filledLayers.Click();
-                            Thread.Sleep(2000);
+                            Thread.Sleep(4000);
                             try
                             {
                                 IWebElement colors = wait.Until(d => (IWebElement)js.ExecuteScript("return document.querySelector('input[name=\"colors\"][title=\"4\"]');"));
@@ -185,7 +191,6 @@ namespace Azon.Controllers
                             }
                             catch (WebDriverTimeoutException ex)
                             {
-
                             }
                             IWebElement semanticSegmentationTab = (IWebElement)((IJavaScriptExecutor)_webDriver).ExecuteScript("return document.querySelector('#semanticsegmentationtabbtn.nav-link');");
 
@@ -201,18 +206,18 @@ namespace Azon.Controllers
 
                                 // Toggle the checked property using JavaScript
                                 js.ExecuteScript("arguments[0].checked = !arguments[0].checked;", background);
-                                Thread.Sleep(1000);
+                        
 
                                 ReadOnlyCollection<IWebElement> saveBackButtons = (ReadOnlyCollection<IWebElement>)js.ExecuteScript("return document.querySelectorAll('.btn.btn-primary.btn-sm.save');");
                                 saveBackButtons[1].Click();
-                                Thread.Sleep(2000);
+                                Thread.Sleep(3000);
                             }
                             else
                             {
                                 semanticSegmentationTab.Click();
                                 Thread.Sleep(2000);
                                 int maxCheckboxCount = 4; // You can adjust this based on your requirements
-                                bool checkboxFound = true;
+                                bool checkboxFound = false;
 
                                 for (int counter = 0; counter < maxCheckboxCount; counter++)
                                 {
@@ -225,38 +230,40 @@ namespace Azon.Controllers
                                         if (checkbox != null)
                                         {
                                             checkbox.Click();
-                                            Thread.Sleep(1000);
+                                            ReadOnlyCollection<IWebElement> saveButtons = _webDriver.FindElements(By.CssSelector("button.save.btn.btn-sm.btn-primary"));
+                                            saveButtons[1].Click();
+                                            Thread.Sleep(2000);
                                         }
                                         else
                                         {
                                             // Set the flag to false and break out of the loop
-                                            checkboxFound = false;
+                    
                                             break;
                                         }
+                                        checkboxFound = true;
+             
+
+                                        // Click on the canvas
+                                       
                                     }
                                     catch (Exception ex)
                                     {
                                         // Handle the exception if needed
                                         Console.WriteLine(ex.Message);
-                                        checkboxFound = false;
+                                        /*checkboxFound = false;*/
                                         break;
                                     }
                                 }
 
-                                // Continue with the code if at least one checkbox was found
-                                if (checkboxFound)
-                                {
-                                    // The code continues here after the loop
-
-                                    // Wait for 5 seconds (adjust the time as needed)
-                                    ReadOnlyCollection<IWebElement> saveButtons = _webDriver.FindElements(By.CssSelector("button.save.btn.btn-sm.btn-primary"));
-                                    saveButtons[1].Click();
-                                }
+                              
+                               
                             }
-
+                            IWebElement canvas = wait.Until(d => (IWebElement)((IJavaScriptExecutor)d).ExecuteScript("return document.getElementById('inputcanvas');"));
+                            Actions builder = new Actions(_webDriver);
+                            builder.MoveToElement(canvas).Click().Perform();
                             WebDriverWait wait1 = new WebDriverWait(_webDriver, TimeSpan.FromSeconds(100));
                             string targetClass = "img-fluid";
-                            Thread.Sleep(3000);
+                            Thread.Sleep(5000);
                             bool isDisplayNone = wait1.Until(d =>
                             {
                                 IReadOnlyCollection<IWebElement> elements = d.FindElements(By.CssSelector($"div.progress"));
@@ -272,6 +279,7 @@ namespace Azon.Controllers
                             });
                             if (isDisplayNone)
                             {
+
                                 var svgElement = wait.Until(d => d.FindElement(By.CssSelector($"svg.{targetClass}")));
 
                                 System.IO.File.Delete(filePath);

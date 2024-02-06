@@ -57,7 +57,7 @@ function Home () {
       });
   
       // Display the current slide
-      slides[newIndex - 1].style.display = "block";
+      slides[newIndex - 1].style.display = "inline-block";
     },
     [] // No dependencies needed here
   );
@@ -75,6 +75,8 @@ function Home () {
           />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>
+          <a class="prev" onClick={() => minusSlides(1)}>&#10094;</a>
+        <a class="next" onClick={() => plusSlides(1)}>&#10095;</a>
         </div>
 
         <div class="mySlides fade1">
@@ -86,6 +88,8 @@ src={banner2}
 />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>
+          <a class="prev" onClick={() => minusSlides(1)}>&#10094;</a>
+        <a class="next" onClick={() => plusSlides(1)}>&#10095;</a>
         </div>
 
         <div class="mySlides fade1">
@@ -95,6 +99,8 @@ src={banner2}
           />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>
+          <a class="prev" onClick={() => minusSlides(1)}>&#10094;</a>
+        <a class="next" onClick={() => plusSlides(1)}>&#10095;</a>
         </div>
 
         <div class="mySlides fade1">
@@ -105,10 +111,11 @@ src={banner2}
           />
           <p id="sale">S A L E</p>
           <p id="saleTag">ONLINE</p>
+          <a class="prev" onClick={() => minusSlides(1)}>&#10094;</a>
+        <a class="next" onClick={() => plusSlides(1)}>&#10095;</a>
         </div>
 
-        <a class="prev" onClick={() => minusSlides(1)}>&#10094;</a>
-        <a class="next" onClick={() => plusSlides(1)}>&#10095;</a>
+        
       </div>
       <div class="position-relative row my-lg-7 pt-5 pt-lg-0 g-8">
                 

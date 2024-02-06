@@ -164,7 +164,7 @@ const Products = () => {
                         </form>
                        
 
-      <div style={{marginTop:"50px"}} class="heading_container heading_center">
+      <div style={{marginTop:"70px"}} class="heading_container heading_center">
         <h2>
           Our Products
         </h2>

@@ -77,11 +77,4 @@
       top: 100%;
     }
   }
-  @media (max-width: 420px) {
-    .container {
-      transform: translate(-50%,-50%) scale(0.8)
-    }
-    .lock.generated {
-      transform: scale(0.3);
-    }
-  }
+ 
