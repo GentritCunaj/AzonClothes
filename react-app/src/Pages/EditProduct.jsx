@@ -351,7 +351,7 @@ const EditProduct = () => {
   
 </a><input style={{maxHeight:"50px"}} type="file" onChange={(e) => handleImageChange(e, colorVariantIndex)} />
 
-<img style={{maxWidth:"148px",maxHeight:"148px"}} src={getProductImage(colorVariant.picturePath)} alt={colorVariant.picturePath}/>
+<img style={{maxWidth:"148px",maxHeight:"148px"}}  src={`https://storage.googleapis.com/azondesigns/hoodies/${colorVariant.picturePath}`} alt={colorVariant.picturePath}/>
 </div>
          
 

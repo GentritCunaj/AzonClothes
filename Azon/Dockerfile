@@ -1,14 +1,17 @@
-#See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
 FROM mcr.microsoft.com/dotnet/aspnet:8.0-jammy AS base
 WORKDIR /app
 
+# Update apt package list and upgrade existing packages
 RUN apt update -y && apt upgrade -y 
+
+# Install required packages
 RUN apt install -y wget unzip dpkg
 
+# Download and install Google Chrome
 RUN wget http://dl.google.com/linux/chrome/deb/pool/main/g/google-chrome-stable/google-chrome-stable_114.0.5735.90-1_amd64.deb
-RUN dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb; apt-get install -f -y
+RUN dpkg -i google-chrome-stable_114.0.5735.90-1_amd64.deb || apt-get install -f -y
 
+# Download and install ChromeDriver
 RUN wget https://chromedriver.storage.googleapis.com/114.0.5735.90/chromedriver_linux64.zip
 RUN unzip chromedriver_linux64.zip
 RUN mv chromedriver /usr/bin/chromedriver

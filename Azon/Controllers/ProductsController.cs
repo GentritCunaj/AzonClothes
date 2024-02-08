@@ -14,6 +14,10 @@ using System.Security.Claims;
 using NuGet.ContentModel;
 using Stripe;
 using Product = Azon.Models.Product;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Storage.V1;
+using Stripe.Climate;
+using System.Collections;
 
 namespace Azon.Controllers
 {
@@ -24,11 +28,19 @@ namespace Azon.Controllers
         private readonly AzonContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        public ProductsController(AzonContext context, IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContextAccessor)
+        private readonly IWebHostEnvironment _hostingEnvironment;
+        private readonly GoogleCredential _googleCredential;
+        private readonly StorageClient _client;
+        public ProductsController(AzonContext context, IWebHostEnvironment hostingEnvironment, IWebHostEnvironment webHostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
             _webHostEnvironment = webHostEnvironment;
             _httpContextAccessor = httpContextAccessor;
+            string credentialPath = Path.Combine(_hostingEnvironment.WebRootPath, "optical-metric-411818-b3e4d1c73897.json");
+    
+            _googleCredential = GoogleCredential.FromFile(credentialPath);
+            _client = StorageClient.Create(_googleCredential);
         }
 
         // GET: api/Products
@@ -158,22 +170,33 @@ namespace Azon.Controllers
                     product.ColorVariants[i].StockOptions = productUpdated.ColorVariants[i].StockOptions;
                     if (product.ColorVariants[i].Image != null)
                     {
-                        string folder = "assets/";
-                        string fullpath = folder += product.ColorVariants[i].Image.FileName;
-                        string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\react-app\src", fullpath);
-                        var exists = System.IO.File.Exists(Path.Combine(pathFolder));
-                        if (exists)
+                      
+
+                        byte[] byteArray;
+                        using (MemoryStream memoryStream = new MemoryStream())
                         {
+                            product.ColorVariants[i].Image.CopyTo(memoryStream);
 
+                            // Convert MemoryStream to byte array
+                            byteArray = memoryStream.ToArray();
                         }
-                        else
-                        {
 
-                            await product.ColorVariants[i].Image.CopyToAsync(new FileStream(pathFolder, FileMode.Create));
+                        var obj = await _client.UploadObjectAsync("azondesigns", "hoodies/" +product.ColorVariants[i].Image.FileName, product.ColorVariants[i].Image.ContentType, new MemoryStream(byteArray));
+                        product.ColorVariants[i].PicturePath = product.ColorVariants[i].Image.FileName;
+                        /* string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\react-app\src", fullpath);
+                         var exists = System.IO.File.Exists(Path.Combine(pathFolder));
+                         if (exists)
+                         {
+
+                         }
+                         else
+                         {
+
+                             await product.ColorVariants[i].Image.CopyToAsync(new FileStream(pathFolder, FileMode.Create));
 
 
-                        }
-                        product.ColorVariants[i].PicturePath = "assets/" + product.ColorVariants[i].Image?.FileName;
+                         }
+                         product.ColorVariants[i].PicturePath = "assets/" + product.ColorVariants[i].Image?.FileName;*/
                     }
 
                 }
@@ -238,22 +261,32 @@ namespace Azon.Controllers
 
                 if (productdto?.ImageFile != null)
                 {
-                    string folder = "assets/";
-                    string fullpath = folder += productdto.ImageFile.FileName;
-                    string pathFolder = Path.Combine(@"C:\Users\Gentrit\source\repos\Azon\react-app\src", fullpath);
-                    var exists = System.IO.File.Exists(Path.Combine(pathFolder));
-                    if (exists)
+
+                 
+        
+                    if (FileExists("azondesigns","hoodies/"+ productdto.ImageFile.FileName))
                     {
 
                     }
                     else
                     {
 
-                        await productdto.ImageFile.CopyToAsync(new FileStream(pathFolder, FileMode.Create));
+
+                        byte[] byteArray;
+                        using (MemoryStream memoryStream = new MemoryStream())
+                        {
+                            productdto.ImageFile.CopyTo(memoryStream);
+
+                            // Convert MemoryStream to byte array
+                            byteArray = memoryStream.ToArray();
+                        }
+
+                        var obj = await _client.UploadObjectAsync("azondesigns", "hoodies/" + productdto.ImageFile?.FileName, productdto.ImageFile?.ContentType, new MemoryStream(byteArray));
+      
 
                     }
-                    p.PicturePath = "assets/" + productdto.ImageFile?.FileName;
-                    v.PicturePath = "assets/" + productdto.ImageFile?.FileName;
+                    p.PicturePath = productdto.ImageFile?.FileName;
+                    v.PicturePath = productdto.ImageFile?.FileName;
                 }
                 else
                 {
@@ -262,12 +295,16 @@ namespace Azon.Controllers
 
                 if (productdto?.DesignFile != null)
                 {
-                    string folder = "designs/";
-                    folder += Guid.NewGuid().ToString() + Path.GetExtension(productdto.DesignFile.FileName);
-                    string pathFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                    byte[] byteArray;
+                    using (MemoryStream memoryStream = new MemoryStream())
+                    {
+                        productdto.DesignFile.CopyTo(memoryStream);
 
-                    await productdto.DesignFile.CopyToAsync(new FileStream(pathFolder, FileMode.Create));
-                    p.DesignPath = "designs/" + productdto.DesignFile?.FileName;
+                        // Convert MemoryStream to byte array
+                        byteArray = memoryStream.ToArray();
+                    }
+
+                    var obj = await _client.UploadObjectAsync("azondesigns", productdto.DesignFile?.FileName, productdto.DesignFile?.ContentType, new MemoryStream(byteArray));
 
 
                 }
@@ -331,6 +368,12 @@ namespace Azon.Controllers
         {
             public IFormFile ImageFile { get; set; }
             public string PicturePath { get; set; }
+        }
+
+        private bool FileExists(string bucketName, string fileName)
+        {
+            var objects = _client.ListObjects(bucketName, Path.GetDirectoryName(fileName)).ToArray();
+            return objects.Any(x => x.Name == fileName);
         }
 
 

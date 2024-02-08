@@ -91,7 +91,7 @@ const OrderDetails = () => {
                         <td data-th="Product">
                             <div class="row">
                                 <div class="col-md-3 text-left">
-                                <img src={getProductImage(el.product.picturePath)} alt={el.product.name}  class="img-fluid d-none d-md-block rounded mb-2 shadow "/>
+                                <img src={`https://storage.googleapis.com/azondesigns/hoodies/${el.product.picturePath}`} alt={el.product.name}  class="img-fluid d-none d-md-block rounded mb-2 shadow "/>
 
                                 </div>
                                 <div class="col-md-6 text-left mt-sm-3">

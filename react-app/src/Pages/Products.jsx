@@ -178,7 +178,7 @@ const Products = () => {
           <div class="box">
             <div class="img-box">
             
-            <img src={getProductImage(el.picturePath)} alt={el.Name} />
+            <img src={`https://storage.googleapis.com/azondesigns/hoodies/${el.picturePath}`} alt={el.Name} />
          
               <a href="" class="add_cart_btn">
               <a href={`/ProductDetails/${el.productId}`}>
@@ -203,15 +203,20 @@ const Products = () => {
             
         
             <div class="detail-box">
+              <div style={{ display: "flex"
+              }}>
+
               <h5 style={{fontSize:"2em"}}>
                 {el.name}
-                {el.colorVariants.map((cv,index)=>{
+              
+              </h5>
+              {el.colorVariants.map((cv,index)=>{
                
-               return <button key={index} style={{background:cv.hexCode }} className="btnStyle">
+               return <button key={index} style={{background:cv.hexCode,position:"relative",top:"7px" }} className="btnStyle">
                 
                </button>
              })}
-              </h5>
+             </div>
               
             
               <div class="product_info">

@@ -102,7 +102,7 @@ const Dashboard = ()  => {
                                                     
                                                     }}
                                                     alt="The house from the offer."
-                                                    src={getProductImage(value)}
+                                                    src={`https://storage.googleapis.com/azondesigns/hoodies/${value}`}
                                                     />
                                                     )
                                                 }

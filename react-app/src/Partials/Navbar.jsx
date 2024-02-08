@@ -25,7 +25,7 @@ function Navbar(){
                     <div class="header_bottom">
                         <div class="container-fluid">
                             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                                <div class="logo-container">
+                                <div style={{position:'relative',left:'5px'}} class="logo-container">
                                     <img src={logo} alt="logo" class="logo-img" />
                                </div>
                                 

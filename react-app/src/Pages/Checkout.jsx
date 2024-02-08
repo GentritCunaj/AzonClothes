@@ -122,7 +122,7 @@ const Checkout = () => {
                             <div class="row">
                                 <div class="col-md-3 text-left">
                                 <div class="image">
-                                <img src={getProductImage(el.product.colorVariants[0].picturePath)} alt={el.product.name} style={{marginLeft:"-30px"}} class="product-image" />
+                                <img  src={`https://storage.googleapis.com/azondesigns/hoodies/${el.product.colorVariants[0].picturePath}`} alt={el.product.name} style={{marginLeft:"-30px"}} class="product-image" />
                                 { el.product.vector != null  && (
                                         <svg class="img-fluid" xmlns="http://www.w3.org/2000/svg" viewBox = {"0 0 10800 7200"} id="checkoutsvg"
                                          >

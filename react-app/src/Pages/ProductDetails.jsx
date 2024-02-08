@@ -51,6 +51,15 @@ const ProductDetails = () => {
     button.classList.add('clicked');
   }
 
+  const getProductImage = useMemo(() => {
+    const selectedColorVariant = product.colorVariants.find((cv) => cv.hexCode === selectedColor);
+    try {
+      return selectedColorVariant ? `https://storage.googleapis.com/azondesigns/hoodies/${colorVariant.picturePath}`: `https://storage.googleapis.com/azondesigns/hoodies/${product.picturePath}`;
+    } catch (err) {
+      return placeholderImage;
+    }
+  }, [product, selectedColor, colorVariant]);
+
 
   const [formValues, setFormValues] = useState({
     name: '',
@@ -198,14 +207,7 @@ const ProductDetails = () => {
         setStock(initialStock);
       }
     }, [id]);
-    const getProductImage = useMemo(() => {
-      const selectedColorVariant = product.colorVariants.find((cv) => cv.hexCode === selectedColor);
-      try {
-        return selectedColorVariant ? require(`../${colorVariant.picturePath}`) : require(`../${product.picturePath}`);
-      } catch (err) {
-        return placeholderImage;
-      }
-    }, [product, selectedColor, colorVariant]);
+   
 
         // Assuming reviewsRating is an array of ratings
         // const averageRating = reviewsrating != null && reviewsrating.length > 0
@@ -316,7 +318,7 @@ const ProductDetails = () => {
          
           </div>
           <div style={{display:"flex",flexDirection:"row"}}>
-          <h4>Colors :</h4>
+          <h4 style={{position:"relative",top:"5px"}}>Colors :</h4>
           <div style={{marginTop:"5px"}}>
           {product.colorVariants.map((cv,index)=>{
                

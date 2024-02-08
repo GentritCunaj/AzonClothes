@@ -19,7 +19,8 @@ const CreateProduct = () => {
         description: '',
         size:'',
         colorHexCode:'',
-        imageFile:''
+        imageFile:'',
+       
       });
       
 
@@ -51,11 +52,11 @@ const CreateProduct = () => {
             newFormData.append('imageFile', formData.imageFile);
             newFormData.append('size',formData.size);
             newFormData.append('colorHexCode',formData.colorHexCode)
-            newFormData.append('isAvailable',true);
+            newFormData.append('isAvailabe',true);
             await dispatch(PostProduct(formData)).then((res) => 
             {
               console.log(res);
-            navigate(`/editProduct/${res.data.data.productId}`)}
+            navigate(`/editProduct/${res.productId}`)}
             );
            
             
