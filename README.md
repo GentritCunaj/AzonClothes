@@ -1,11 +1,12 @@
-# .NET Web API and ReactJS Project
-Project Overview
+# Ecommerce .NET Web API and ReactJS Project
+## Project Overview  
 Welcome to AzonClothes ! This project aims to create a fully functional and user-friendly ecommerce platform. 
 It provides a platform for customers to browse products, make purchases, and manage their accounts efficiently. This README will guide you through the setup and usage of our ecommerce application.
 
 
 
 ## Features
+Admin panel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Admin can manage products, orders and users.  
 User authentication:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Users can sign up, log in, and manage their accounts securely.  
 Product browsing:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Customers can browse through a wide range of products available on the platform.  
 Product search:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can search for specific products using keywords.  
@@ -17,14 +18,6 @@ Checkout process:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb
 Shipping Details:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can get their current location and fill shipping details quickly.  
 Order management:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can view their order history and track their progress.  
 User Profile:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can edit their info and update their saved shipping info.  
-Admin panel:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Admin can manage products, orders and users.  
-### Route protected:  
-  Admin Pages  
-  One users orders cant be accesses by another user  
-
-### Backend Features:   
-Not registered users automatically get deleted after a order  
-Products quantity minimizes for each order   
 
 
 
@@ -32,26 +25,13 @@ Products quantity minimizes for each order
 Frontend: HTML, CSS, JavaScript, ReactJs,React-Redux  
 Backend: .NET Web API, C#, Entity Framework Core, SQL Server,  
 Authentication: JSON Web Tokens (JWT)  
-Payment: Stripe API  
-Deployment: Azure  
-Installation  
-Clone the repository:  
-git clone https://github.com/GentritCunaj/AzonClothes.git  
+Payment: Stripe API 
+Deployment: Azure
 
-# Frontend   
-cd react-app  
-Install dependencies :   
-npm install  
-Create a .env file in the root directory.  
-Add necessary environment variables such as database connection URL, JWT secret, Stripe API keys, etc.  
-Start the development server:  
-npm start  
-## Usage  
-Access the application through your browser at http://localhost:3000.  
-Sign up for a new account or log in if you already have one.  
-Browse through available products, add them to your cart, and proceed to checkout.  
-Fill in the necessary information and select a payment method to complete the purchase.  
-As an admin, log in with admin credentials to access the admin panel and manage products, categories, orders, and user accounts.  
+# Installation
+  
+Clone the repository:  
+``` git clone https://github.com/GentritCunaj/AzonClothes.git```   
 
 # Backend  
 cd Azon  
@@ -66,19 +46,25 @@ Apply database migrations:
 Open Package Manager Console in Visual Studio.  
 Run the following command to apply migrations and create/update the database:  
 Open Package Manager Console  
-dotnet ef database update  
+``` dotnet ef database update```     
 Set up environment variables:  
 
 Add necessary environment variables such as JWT secret, Stripe API keys, etc. You can set these in the appsettings.json file.  
 Start the application:  
-Press F5 or click on the "Start" button in Visual Studio to run the application.  
-## Usage  
+Press F5 or click on the "Start" button in Visual Studio to run the application. 
 Access the application through your browser at http://localhost:7247.  
-Access the API endpoints through your preferred HTTP client (e.g., Postman, Swagger UI).  
-Register for a new account or log in if you already have one.  
-Browse through available products, add them to your cart, and proceed to checkout.  
-Fill in the necessary information and select a payment method to complete the purchase.  
-As an admin, you can access admin functionalities through designated endpoints to manage products, categories, orders, and user accounts.  
+
+
+
+# Frontend   
+cd react-app  
+Install dependencies :   
+``` npm install ```  
+Create a .env file in the root directory.  
+Add necessary environment variables such as database connection URL, JWT secret, Stripe API keys, etc.  
+Start the development server:  
+``` npm start ```    
+Access the application through your browser at http://localhost:3000.  
 
 # Watch how the application runs from a logged in user
 [![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://www.youtube.com/watch?v=QLwds44fhKw)
@@ -95,12 +81,12 @@ As an admin, you can access admin functionalities through designated endpoints t
 # Contributing  
 To contribute, please follow these steps:
 
-Fork the repository.
-Create a new branch (git checkout -b feature/xyz).
-Make your changes.
-Commit your changes (git commit -am 'Add new feature').
-Push to the branch (git push origin feature/xyz).
-Create a new Pull Request.
+Fork the repository.  
+Create a new branch (git checkout -b feature/xyz).  
+Make your changes.  
+Commit your changes (git commit -am 'Add new feature').  
+Push to the branch (git push origin feature/xyz).  
+Create a new Pull Request.  
 
 # Contact  
 ## For any inquiries or feedback, please contact me at qunajgentrit@gmail.com  
