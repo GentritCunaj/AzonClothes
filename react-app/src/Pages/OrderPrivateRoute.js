@@ -19,7 +19,7 @@ const OrderPrivateRoute = ({ children,roles }) => {
   }
 
   // Check if the decoded token id matches the customerId in the order
-  debugger;
+
   if (decodedToken && order && order.customer.email === decodedToken.id) {
     return children;
   }

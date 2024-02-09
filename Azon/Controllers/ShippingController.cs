@@ -46,7 +46,7 @@ namespace ClientShopping.Controllers
 
             }
             shipping = await _context.ShippingDetails.Where(s => s.CustomerId == nameIdentifier).FirstOrDefaultAsync();
-            if (shipping != null)
+            if (shipping !=  null)
             {
                 
                 service.Success = true;

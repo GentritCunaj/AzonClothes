@@ -887,7 +887,7 @@ width:fit-content;
 .btnStyle {
    border: none;
     border-radius: 50%;
-    margin-left: 0.3rem;
+    margin-left: 0.2rem;
     width: 20px;  /* Set explicit width */
     height: 20px; /* Set explicit height */
     outline: none;

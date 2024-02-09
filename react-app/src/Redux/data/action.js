@@ -370,11 +370,12 @@ export const GetWishlist = (data) => async (dispatch) => {
 export const GetShippingDetails = (data) => async (dispatch) => {
     try {
 
+       
         dispatch({type:types.GET_SHIPPING_REQUEST});
         const res = await axios.post(
             `${process.env.REACT_APP_BASE_URL}/Shipping/getShipping`,
             {
-                guid: data.guid,  // Directly pass the guid
+                guid: data && data.guid !== undefined ? data.guid : null,
             },
            config
             

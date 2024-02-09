@@ -35,7 +35,13 @@ const Shipping = () => {
 
     const {shippingDetails} = useSelector((store) => store.data);
     useEffect(()=> {
-      dispatch(GetShippingDetails({guid:guid})).then(res => console.log(res,"okay"))
+      
+      if (guid === undefined){
+        dispatch(GetShippingDetails({guid:null})).then(res => console.log(res,"okay"))
+      }
+     else {
+      dispatch(GetShippingDetails({guid})).then(res => console.log(res,"okay"))
+     }
     
     },[]);
 

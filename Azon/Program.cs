@@ -83,6 +83,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddAuthentication(options =>
 {
 
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 });
 
@@ -142,7 +144,7 @@ app.UseSwaggerUI(options =>
 
 
 app.MapIdentityApi<ApplicationUser>();
-app.UseHttpsRedirection();
+
 
 app.UseSession();
 app.Use(async (context, next) =>

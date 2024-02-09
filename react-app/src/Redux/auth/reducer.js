@@ -20,6 +20,7 @@ export default function authReducer(state = initialState, { type, payload }) {
             }
         case types.LOGIN_CLIENT_SUCCESS:
             localStorage.setItem("azontoken", payload.token);
+            localStorage.removeItem("guid");
             return {
                 ...state, userLogin: { loading: false, error: false, message: payload.message }, token: payload.token,isAuthenticated:true
             }
