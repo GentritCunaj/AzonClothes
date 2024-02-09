@@ -52,7 +52,7 @@ const ProductDetails = () => {
   }
 
   const getProductImage = useMemo(() => {
-    const selectedColorVariant = product.colorVariants.find((cv) => cv.hexCode === selectedColor);
+    const selectedColorVariant = product && product.colorVariants && product.colorVariants.find((cv) => cv.hexCode === selectedColor);
     try {
       return selectedColorVariant ? `https://storage.googleapis.com/azondesigns/hoodies/${colorVariant.picturePath}`: `https://storage.googleapis.com/azondesigns/hoodies/${product.picturePath}`;
     } catch (err) {
@@ -317,7 +317,7 @@ const ProductDetails = () => {
     
          
           </div>
-          <div style={{display:"flex",flexDirection:"row"}}>
+          <div style={{display:"flex",flexDirection:"row",width:"fit-content"}}>
           <h4 style={{position:"relative",top:"5px"}}>Colors :</h4>
           <div style={{marginTop:"5px"}}>
           {product.colorVariants.map((cv,index)=>{
@@ -325,7 +325,7 @@ const ProductDetails = () => {
                return (<>
                 
                <button key={index}  onClick={() => handleColorClick(cv)} style={{background:cv.hexCode }} className={cv.hexCode == selectedColor ?"btnStyle active":"btnStyle" }>
-                {cv.hexCode == selectedColor? <FontAwesomeIcon icon={faCheck} style={{marginBottom:"3px",marginLeft:"-3px"}}/> :null}
+                {cv.hexCode == selectedColor? <FontAwesomeIcon icon={faCheck} /> :null}
                </button></>)
                })}
                </div>

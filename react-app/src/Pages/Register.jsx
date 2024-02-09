@@ -87,18 +87,17 @@ const Register = () => {
     }
     setLoading(true);
     dispatch(RegisterCustomer(Customer)).then((res) => {
-      if (res.message === "You're already registered") {
+      if (res.success == false) {
         setLoading(false);
         return notify(res.message);
       }
-      else if (res.message === "We don't know the specific problem"){
+      else {
         setLoading(false);
-        return notify(res.message);
-      }
-      setLoading(false);
       setCustomer(initData);
       navigate("/login");
       return notify("You're registered");
+      }
+      
 
     });
     

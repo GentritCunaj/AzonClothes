@@ -1,32 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.807b8ff0.css",
-    "main.js": "/static/js/main.7f994968.js",
+    "main.css": "/static/css/main.7e26f43c.css",
+    "main.js": "/static/js/main.bf660ed1.js",
     "static/js/988.041c4aa5.chunk.js": "/static/js/988.041c4aa5.chunk.js",
     "static/media/banner-4.JPG": "/static/media/banner-4.7d8892aca643e5e00354.JPG",
     "static/media/banner-6.jpg": "/static/media/banner-6.c378f4be01c3da320071.jpg",
     "static/media/theme.bundle.css.map": "/static/media/theme.bundle.css.ec5fb43962140a27948b.map",
-    "static/media/orangejumper.jpg": "/static/media/orangejumper.ec33938f34255a98cafa.jpg",
     "static/media/banner-2.jpg": "/static/media/banner-2.811dd7f691f1e66b053d.jpg",
-    "static/media/xhemperiizi.jpg": "/static/media/xhemperiizi.b1f00398c777195cd894.jpg",
-    "static/media/greyjumper.jpg": "/static/media/greyjumper.a8ca5a7f67a909275ee5.jpg",
-    "static/media/xhemperiperhimt.jpg": "/static/media/xhemperiperhimt.a8ca5a7f67a909275ee5.jpg",
-    "static/media/whitehoodie.jpg": "/static/media/whitehoodie.70f9607f1830e44047e7.jpg",
-    "static/media/blackhoodie.jpg": "/static/media/blackhoodie.0bf103577a182b4e56eb.jpg",
     "static/media/banner-3.jpg": "/static/media/banner-3.77757f59b48a9a167b71.jpg",
     "static/media/cancelled.png": "/static/media/cancelled.07e0c72ebc78c4d06f8f.png",
     "static/media/banner-7.jpeg": "/static/media/banner-7.c2959987661866ae554c.jpeg",
     "static/media/remixicon.woff": "/static/media/remixicon.8d09fa11700ed63cf96e.woff",
     "static/media/goku.jpg": "/static/media/goku.368ab77bab64dd4dd631.jpg",
     "static/media/banner-5.jpeg": "/static/media/banner-5.973a148a16b7985d20a8.jpeg",
-    "static/media/apple-iphone-x-pictures-5.png": "/static/media/apple-iphone-x-pictures-5.55a183560bb40a2f5b2d.png",
     "static/media/libs.bundle.css.map": "/static/media/libs.bundle.css.316130ba52a1ee8e4fb7.map",
     "static/media/admin@gmail_image.png": "/static/media/admin@gmail_image.911be0a882db4438a216.png",
-    "static/media/redjumper.jpg": "/static/media/redjumper.121e485bdc0f2aeb6c12.jpg",
     "static/media/logo.png": "/static/media/logo.3036d18a4bcfe922e0a4.png",
     "static/media/banner-1.jpeg": "/static/media/banner-1.f8b26a25776a6a34ba4c.jpeg",
     "static/media/diners-club.svg": "/static/media/diners-club.1994a4fdbebbf7175690.svg",
-    "static/media/sofa.jpg": "/static/media/sofa.876e52bc2be904b03aca.jpg",
     "static/media/girocard.svg": "/static/media/girocard.b8e0623698134d33b030.svg",
     "static/media/index.cjs": "/static/media/index.671993152dc0f6e0b17a.cjs",
     "static/media/klarna.svg": "/static/media/klarna.6133abd16efaf356702a.svg",
@@ -48,12 +39,12 @@
     "static/media/bitcoin.svg": "/static/media/bitcoin.f9ec8b7040da9b2933ba.svg",
     "static/media/visa.svg": "/static/media/visa.bc7ecd7809f449109ee3.svg",
     "static/media/desktop.ini": "/static/media/desktop.65a1e0669db5c91f4944.ini",
-    "main.807b8ff0.css.map": "/static/css/main.807b8ff0.css.map",
-    "main.7f994968.js.map": "/static/js/main.7f994968.js.map",
+    "main.7e26f43c.css.map": "/static/css/main.7e26f43c.css.map",
+    "main.bf660ed1.js.map": "/static/js/main.bf660ed1.js.map",
     "988.041c4aa5.chunk.js.map": "/static/js/988.041c4aa5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.807b8ff0.css",
-    "static/js/main.7f994968.js"
+    "static/css/main.7e26f43c.css",
+    "static/js/main.bf660ed1.js"
   ]
 }

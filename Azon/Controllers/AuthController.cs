@@ -306,6 +306,27 @@ namespace Azon.Controllers
             };
 
             var result = await _userManager.CreateAsync(user, register.Password);
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    if (error.Code == "DuplicateUserName")
+                    {
+                        response.Data = null;
+                        response.Success = false;
+                        response.Message = "Username is already chosen";
+                        return response;
+                    }
+                    if (error.Code == "PasswordRequiresNonAlphanumeric" || error.Code == "PasswordRequiresDigit" || error.Code == "PasswordRequiresUpper")
+                    {
+                        response.Data = null;
+                        response.Success = false;
+                        response.Message = "Password is not strong enough";
+                        return response;
+                    }
+                    
+                }
+            }
 
             if (result.Succeeded)
             {
