@@ -134,14 +134,14 @@ const EditProduct = () => {
       dispatch(DeleteCV(colorVariantIdToDelete))
         .then((res) => {
           // Handle success response if needed
-          console.log("DeleteCV Success:", res);
+    
 
           // Update the state after the successful deletion
           setFormData((prevData) => {
             
             updatedColorVariants.splice(colorVariantIndex, 1);
       
-            console.log("Updated Color Variants:", updatedColorVariants);
+          
       
             return {
               ...prevData,

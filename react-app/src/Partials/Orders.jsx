@@ -29,7 +29,7 @@ const Orders = () => {
         }
     }
 
-    useEffect(()=> {dispatch(GetOrderDetails()).then(console.log(orders))},[]);
+    useEffect(()=> {dispatch(GetOrderDetails())},[]);
 
     const viewOrderDetails = async (id) => {
       try {

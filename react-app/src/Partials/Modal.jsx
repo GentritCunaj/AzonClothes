@@ -33,17 +33,17 @@ function Modal({ modalCase,setOpenModal,id}) {
             </button>
           )}
             {modalCase === 'deleteProduct' && (
-            <button onClick={() => dispatch(DeleteProduct(id)).then((res)=>console.log(res))} className="button">
+            <button onClick={() => dispatch(DeleteProduct(id))} className="button">
               Delete
             </button>
           )}
             {modalCase === 'deleteUser' && (
-            <button onClick={() => dispatch(DeleteUser({email:id})).then((res)=>console.log(res))} className="button">
+            <button onClick={() => dispatch(DeleteUser({email:id}))} className="button">
               Delete
             </button>
           )}
           {modalCase === 'changeRole' && (
-            <button onClick={() => dispatch(ChangeRole({email:id})).then((res)=>console.log(res))} className="button">
+            <button onClick={() => dispatch(ChangeRole({email:id}))} className="button">
               Change 
             </button>
           )}

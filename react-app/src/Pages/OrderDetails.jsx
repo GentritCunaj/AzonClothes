@@ -33,7 +33,7 @@ const OrderDetails = () => {
   
  
 
-    useEffect(()=> {dispatch(GetOrderDetailsById(id)).then(console.log(order))},[]);
+    useEffect(()=> {dispatch(GetOrderDetailsById(id))},[]);
     const getProductImage = (productName) => {
         try {
             return require(`../${productName}`);

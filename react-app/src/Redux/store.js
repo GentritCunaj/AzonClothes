@@ -13,7 +13,7 @@ function saveToLocalStorage(store) {
         const serializedStore = JSON.stringify(store);
         window.localStorage.setItem("azonstore", serializedStore);
     } catch (e) {
-        console.log(e);
+        
     }
 }
 
@@ -23,7 +23,7 @@ function loadFromLocalStorage() {
         if (serializedStore === null) return undefined;
         return JSON.parse(serializedStore);
     } catch (e) {
-        console.log(e);
+        
         return undefined;
     }
 }

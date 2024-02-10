@@ -27,14 +27,14 @@ export const GetImage = () => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Home`
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_IMAGE_SUCCESS,
             payload: res
         });
         return res;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.GET_IMAGE_ERROR,
             
@@ -69,14 +69,14 @@ export const PostProduct = (data) => async (dispatch) => {
             }
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.POST_PRODUCT_SUCCESS,
             payload: res
         });
         return res.data.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.POST_PRODUCT_ERROR,
 
@@ -100,7 +100,7 @@ export const DeleteProduct = (id) => async (dispatch) => {
     });
     return res.data;
     } catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.DELETE_PRODUCT_ERROR,
             payload:{
@@ -119,14 +119,14 @@ export const GetSingleProduct = (id) => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Products/${id}`
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_PRODUCTS_DETAILS_SUCCESS,
             payload:res.data.data
     });
     return res.data.data;
     } catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_PRODUCTS_DETAILS_ERROR,
             payload:{
@@ -144,14 +144,14 @@ export const GetAllProducts = () => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Products/all`
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_ALL_PRODUCTS_SUCCESS,
             payload:res.data.data
     });
     return res.data;
     } catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_ALL_PRODUCTS_ERROR,
             payload:{
@@ -171,14 +171,14 @@ export const GetProducts = () => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Products`
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_PRODUCTS_SUCCESS,
             payload:res.data.data
     });
     return res.data;
     } catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_PRODUCTS_ERROR,
             payload:{
@@ -197,14 +197,14 @@ export const EditProductById = (id,data) => async (dispatch) => {
             config
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.EDIT_PRODUCT_SUCCESS,
             payload:res.data.data
     });
     return res.data;
     } catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.EDIT_PRODUCT_ERROR,
             payload:{
@@ -241,7 +241,7 @@ export const DeleteCV = (id) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.DELETE_CV_ERROR,
             // payload:{
@@ -269,7 +269,7 @@ export const DeleteWishlist = (data) => async (dispatch) => {
               }
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.ADD_TO_WISHLIST_SUCCESS,
             payload:{
@@ -282,7 +282,7 @@ export const DeleteWishlist = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.ADD_TO_WISHLIST_ERROR,
             // payload:{
@@ -304,7 +304,7 @@ export const AddToWishlist = (data) => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.ADD_TO_WISHLIST_SUCCESS,
             payload:{
@@ -318,7 +318,7 @@ export const AddToWishlist = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.ADD_TO_WISHLIST_ERROR,
             payload:{
@@ -342,7 +342,7 @@ export const GetWishlist = (data) => async (dispatch) => {
         );
 
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_WISHLIST_SUCCESS,
             payload:{
@@ -356,7 +356,7 @@ export const GetWishlist = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_WISHLIST_ERROR,
             payload:{
@@ -381,7 +381,7 @@ export const GetShippingDetails = (data) => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_SHIPPING_SUCCESS,
             payload:{
@@ -394,7 +394,7 @@ export const GetShippingDetails = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_SHIPPING_ERROR,
             payload:{
@@ -417,7 +417,7 @@ export const AddShippingDetails = (data) => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.ADD_SHIPPING_SUCCESS,
             payload:{
@@ -430,7 +430,7 @@ export const AddShippingDetails = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.ADD_SHIPPING_ERROR,
             payload:{
@@ -455,7 +455,7 @@ export const filterProducts = (searchKeyword) => {
         const filteredProductss = allProducts.filter(product =>
             product.name.toLowerCase().includes(searchKeyword.toLowerCase())
         );
-        console.log(filteredProductss,"action");
+   
         dispatch({ type: types.FILTER_PRODUCTS, payload: { filteredProductss} });
          
     };
@@ -470,7 +470,7 @@ export const UpdateOrderStatus = (data) => async (dispatch) => {
             bearer
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.UPDATE_ORDER_SUCCESS,
             payload:{
@@ -483,7 +483,7 @@ export const UpdateOrderStatus = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.UPDATE_ORDER_ERROR,
             payload:{
@@ -504,7 +504,7 @@ export const GetOrderDetails = () => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_ORDERS_SUCCESS,
             payload:{
@@ -517,7 +517,7 @@ export const GetOrderDetails = () => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_ORDERS_ERROR,
             payload:{
@@ -537,7 +537,7 @@ export const GetAllOrders = () => async (dispatch) => {
            bearer
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_ALL_ORDERS_SUCCESS,
             payload:{
@@ -550,7 +550,7 @@ export const GetAllOrders = () => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_ALL_ORDERS_ERROR,
             payload:{
@@ -571,7 +571,7 @@ export const GetOrderDetailsById = (id) => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_ORDER_SUCCESS,
             payload:{
@@ -584,7 +584,7 @@ export const GetOrderDetailsById = (id) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_ORDER_ERROR,
             payload:{
@@ -605,7 +605,7 @@ export const CancelOrdersById = (data) => async (dispatch) => {
             
         );
     
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_CANCELLED_ORDER_SUCCESS,
             payload:{
@@ -618,7 +618,7 @@ export const CancelOrdersById = (data) => async (dispatch) => {
     }
    
     catch(error){
-        console.log(error)
+        
         dispatch({
             type: types.GET_CANCELLED_ORDER_ERROR,
             payload:{

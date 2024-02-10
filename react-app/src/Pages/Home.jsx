@@ -18,22 +18,22 @@ function Home () {
 
   useEffect(() => {
     AOS.init();
-    console.log('Effect triggered. slideIndex:', slideIndex);
+  
     showSlides(slideIndex);
   }, [slideIndex]);
   
   const plusSlides = (n) => {
-    console.log('plusSlides called with', n);
+  
     setSlideIndex((prevIndex) => prevIndex + n);
   };
   
   const minusSlides = (n) => {
-    console.log('minusSlides called with', n);
+    
     setSlideIndex((prevIndex) => prevIndex - n);
   };
   
   const currentSlide = (n) => {
-    console.log('currentSlide called with', n);
+
     setSlideIndex(n);
   };
   

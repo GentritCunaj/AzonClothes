@@ -1,6 +1,7 @@
 ﻿using Azon.Areas.Identity.Data;
 using Azon.Data;
 using Azon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +13,7 @@ using System.Security.Claims;
 
 namespace ClientShopping.Controllers
 {
+
     [Route("[controller]")]
     [ApiController]
     public class WishListController : ControllerBase, IWishListController

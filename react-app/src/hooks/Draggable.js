@@ -44,7 +44,7 @@ function useDragger(id) {
       corner.style.top = `${nextY + target.offsetHeight}px`;
       corner.style.left = `${nextX + target.offsetWidth}px`;
 
-      console.log(nextX, nextY);
+     
     };
 
     const onMouseLeave = () => {

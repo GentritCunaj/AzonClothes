@@ -55,7 +55,7 @@ const CreateProduct = () => {
             newFormData.append('isAvailabe',true);
             await dispatch(PostProduct(formData)).then((res) => 
             {
-              console.log(res);
+              ;
             navigate(`/editProduct/${res.productId}`)}
             );
            

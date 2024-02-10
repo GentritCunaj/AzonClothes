@@ -1,6 +1,7 @@
 ﻿using Azon.Areas.Identity.Data;
 using Azon.Data;
 using Azon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,7 @@ namespace Azon.Controllers
             _roleManager = roleManager;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("allUsers")]
         public async Task<ActionResult<ServiceResponse<IEnumerable<ApplicationUser>>>> GetUsersWithRoles()
         {
@@ -52,6 +54,7 @@ namespace Azon.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("userInfo/{id}")]
         public async Task<ActionResult<ServiceResponse<ApplicationUser>>> GetUserInfoById(string id)
         {
@@ -74,7 +77,7 @@ namespace Azon.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost("userRole")]
         public async Task<ActionResult<ServiceResponse<IEnumerable<ApplicationUser>>>> ChangeUserRole([FromForm] string email)
         {
@@ -117,6 +120,7 @@ namespace Azon.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         public async Task<ActionResult<ServiceResponse<IEnumerable<ApplicationUser>>>> DeleteUser([FromForm] string email)
         {
@@ -204,7 +208,7 @@ namespace Azon.Controllers
 
         }
 
-
+        [Authorize(Roles = "Admin,Customer")]
         [HttpGet("info")]
         public async Task<ActionResult<ServiceResponse<ApplicationUser>>> GetInfo()
         {

@@ -61,10 +61,8 @@ const AllOrders = ()  => {
     const [page, pagechange] = useState(0);
     const [rowperpage, rowperpagechange] = useState(5);
     
-    useEffect(()=> {dispatch(GetAllOrders()).then(res => console.log(res,"okay"))},[dispatch]);
-    useEffect(() => {
-        console.log("Updated allProducts:", allOrders);
-      }, [allOrders]);
+    useEffect(()=> {dispatch(GetAllOrders())},[dispatch]);
+  
     return (
         <>
      <Navbar/>

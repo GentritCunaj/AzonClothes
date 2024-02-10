@@ -94,7 +94,7 @@ const UpdateOrder = () => {
                                             
       </label>
 
-      <button   onClick={() => {dispatch(UpdateOrderStatus(formData)).then((res)=>console.log(res))}} class="button">Update</button>     
+      <button   onClick={() => {dispatch(UpdateOrderStatus(formData))}} class="button">Update</button>     
             </form>
         </div>
  </div>

@@ -18,6 +18,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Storage.V1;
 using Stripe.Climate;
 using System.Collections;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Azon.Controllers
 {
@@ -96,6 +97,8 @@ namespace Azon.Controllers
             return response;
         }
 
+        [Authorize(Roles = "Admin")]
+
         [HttpGet("all")]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> GetAllProducts()
         {
@@ -150,6 +153,8 @@ namespace Azon.Controllers
             return response;
 
         }
+        [Authorize(Roles = "Admin")]
+
         [HttpPut("edit/{id}")]
         public async Task<ActionResult<ServiceResponse<Product>>> PutProduct(int id, [FromForm] ProductEditDto productUpdated)
         {
@@ -331,6 +336,8 @@ namespace Azon.Controllers
         }
 
         // DELETE: api/Products/5
+        [Authorize(Roles = "Admin")]
+
         [HttpDelete("{id}")]
         public async Task<ActionResult<ServiceResponse<List<Product>>>> DeleteProduct(int id)
         {

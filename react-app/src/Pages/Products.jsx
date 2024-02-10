@@ -31,7 +31,7 @@ const Products = () => {
     const handleSearch = (e) => {
       const keyword = e.target.value;
 
-      console.log("Search keyword:", keyword);
+     
       
       setSearchKeyword(keyword);
       dispatch(filterProducts(keyword));
@@ -40,7 +40,7 @@ const Products = () => {
   };
 
 
-    useEffect(()=> {dispatch(GetProducts()).then(res => console.log(res,"okay"))},[]);
+    useEffect(()=> {dispatch(GetProducts())},[]);
 
     const cartButtons = document.querySelectorAll('.cart-button');
 
@@ -115,7 +115,6 @@ const Products = () => {
         return combinedProducts
         
     };
-    // console.log(sortByPrice());
 
   
 
@@ -140,7 +139,7 @@ const Products = () => {
                               onChange={handleSearch} placeholder="Search Product"></input>
                                <i style={{marginTop:"10px",marginLeft:"5px"}} class="fa fa-search" aria-hidden="true"></i>
 
-                               <p class="p-sort" style={{marginLeft:"50px"}}> Sort by Price:</p>
+                               <p class="p-sort" style={{marginLeft:"50px",fontSize:"20px",alignSelf:"center"}}> Sort by Price:</p>
                         <select
                         
                             id="sortDropdown"
@@ -159,7 +158,7 @@ const Products = () => {
                             <option value="sort_high">High to Low</option>
                         </select> 
                            
-                               <a id="backToFull" style={{ marginLeft: "auto", position: "relative" }} onClick={handleBackToListClick} href="/products"><i class="fa fa-arrow-left"></i><span>Back To Full List</span></a>
+
                                
                         </form>
                        

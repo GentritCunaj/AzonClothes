@@ -52,10 +52,8 @@ const Dashboard = ()  => {
     const [page, pagechange] = useState(0);
     const [rowperpage, rowperpagechange] = useState(5);
     
-    useEffect(()=> {dispatch(GetAllProducts()).then(res => console.log(res,"okay"))},[dispatch]);
-    useEffect(() => {
-        console.log("Updated allProducts:", allProducts);
-      }, [allProducts]);
+    useEffect(()=> {dispatch(GetAllProducts())},[dispatch]);
+ 
     return (
         <>
      <Navbar/>

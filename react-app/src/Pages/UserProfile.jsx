@@ -15,7 +15,7 @@ const UserProfile = () => {
 
     const {user} = useSelector((store) => store.auth);
     const dispatch = useDispatch();
-    useEffect(()=> {dispatch(GetInfo()).then(res => console.log(res))},[]);
+    useEffect(()=> {dispatch(GetInfo())},[]);
     return (
         <>
         <Navbar/>

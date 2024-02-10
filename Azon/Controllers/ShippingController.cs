@@ -1,6 +1,7 @@
 ﻿using Azon.Areas.Identity.Data;
 using Azon.Data;
 using Azon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +14,7 @@ using System.Security.Claims;
 
 namespace ClientShopping.Controllers
 {
+   
     [Route("[controller]")]
     [ApiController]
     public class ShippingController : ControllerBase, IShippingController
@@ -29,7 +31,7 @@ namespace ClientShopping.Controllers
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
-
+       
         [HttpPost("getShipping")]
         public async Task<ActionResult<ServiceResponse<ShippingDetail>>> GetShipping([FromForm] string? guid)
         {

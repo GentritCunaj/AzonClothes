@@ -47,10 +47,8 @@ const Users = ()  => {
     const [page, pagechange] = useState(0);
     const [rowperpage, rowperpagechange] = useState(5);
     
-    useEffect(()=> {dispatch(GetAllUsers()).then(res => console.log(res,"okay"))},[dispatch]);
-    useEffect(() => {
-        console.log("Updated allProducts:", users);
-      }, [users]);
+    useEffect(()=> {dispatch(GetAllUsers())},[dispatch]);
+
     return (
         <>
      <Navbar/>

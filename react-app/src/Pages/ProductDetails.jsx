@@ -89,7 +89,7 @@ const ProductDetails = () => {
        
        const email = decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'];
        setEmail(email);
-       console.log(email);
+
       } catch (error) {
         console.error('Error decoding token:', error);
       }
@@ -138,7 +138,7 @@ const ProductDetails = () => {
   const handleSize = (size,stock) => {
     setSize(size);
     setStock(stock)
-    console.log(stock);
+  
   }
 
   const handleClearDesign = () => {
@@ -168,7 +168,7 @@ const ProductDetails = () => {
           
       }
       catch(err){
-        console.log(err);
+       
       }
           
     
@@ -181,10 +181,10 @@ const ProductDetails = () => {
   };
 
 
-    // useEffect(() => { dispatch(GetReviewRatings({id:id})).then(res => console.log(res, "ratingcount")) }, []);
+
 
     useEffect(() => {
-      dispatch(GetSingleProduct(id)).then((res) => console.log(res, "okay"));
+      dispatch(GetSingleProduct(id));
     
     
       if (!selectedColor && product && product.colorVariants &&  product.colorVariants.length > 0) {

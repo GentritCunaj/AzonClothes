@@ -6,7 +6,7 @@ const EditShipping = () => {
 
     const dispatch = useDispatch();
     const {shippingDetails,loading} = useSelector((store) => store.data);
-    useEffect(()=> {dispatch(GetShippingDetails()).then(res => console.log(res,"okay"))},[]);
+    useEffect(()=> {dispatch(GetShippingDetails())},[]);
 
     const [formData,setFormData] = useState({
       address:'',

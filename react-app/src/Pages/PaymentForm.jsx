@@ -41,7 +41,7 @@ export default function PaymentForm() {
         // Call calculateTotalUnitPrices when selectedProducts changes
         const newTotal = calculateTotalUnitPrices();
         setTotalUnitPrices(newTotal);
-        console.log(guid,"guid");
+       
       }, [selectedProducts]);
     
       const calculateTotalUnitPrices = () => {
@@ -74,7 +74,7 @@ export default function PaymentForm() {
         })
       }
       catch (err){
-        console.log(err);
+       
       }
     } 
 
@@ -120,10 +120,10 @@ export default function PaymentForm() {
 
 
         } catch (error) {
-            console.log("Error", error)
+           
         }
     } else {
-        console.log(error.message)
+       
     }
 }
 

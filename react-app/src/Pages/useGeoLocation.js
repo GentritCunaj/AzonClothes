@@ -11,7 +11,7 @@ const useGeoLocation = () => {
         fetch(url)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
+            
             const add = data.display_name;
             const country = data.address.country;
             const city = data.address.city;
@@ -32,7 +32,7 @@ const useGeoLocation = () => {
            
         })
         .catch(error => {
-            console.log(error);
+           
         });
         return location;
     }

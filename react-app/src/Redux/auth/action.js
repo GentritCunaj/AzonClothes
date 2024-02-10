@@ -9,7 +9,7 @@ export const Login = (email,password) => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Auth/loginCustomer`, {email,password}
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.LOGIN_CLIENT_SUCCESS,
             payload: {
@@ -20,7 +20,7 @@ export const Login = (email,password) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.LOGIN_CLIENT_ERROR,
             payload: {
@@ -43,7 +43,7 @@ export const UpdateInfo = (data) => async (dispatch) => {
             }
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.UPDATE_INFO_SUCCESS,
             payload: {
@@ -54,7 +54,7 @@ export const UpdateInfo = (data) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.UPDATE_INFO_ERROR,
             payload: {
@@ -79,7 +79,7 @@ export const ChangeRole = (data) => async (dispatch) => {
             }
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.SET_USER_ROLE_SUCCESS,
             payload: {
@@ -90,7 +90,7 @@ export const ChangeRole = (data) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.SET_USER_ROLE_ERROR,
             payload: {
@@ -117,7 +117,7 @@ export const DeleteUser = (data) => async (dispatch) => {
             }
         );
 
-        console.log(data);
+
         dispatch({
             type: types.DELETE_USER_SUCCESS,
             payload: {
@@ -128,7 +128,7 @@ export const DeleteUser = (data) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.DELETE_USER_ERROR,
             payload: {
@@ -156,7 +156,7 @@ export const GetUserById = (id) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.GET_USER_ERROR,
             payload: {
@@ -179,7 +179,7 @@ export const GetInfo = () => async (dispatch) => {
             }
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_INFO_SUCCESS,
             payload: {
@@ -190,7 +190,7 @@ export const GetInfo = () => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.GET_INFO_ERROR,
             payload: {
@@ -213,7 +213,7 @@ export const GetAllUsers = () => async (dispatch) => {
             }
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.GET_USERS_SUCCESS,
             payload: {
@@ -224,7 +224,7 @@ export const GetAllUsers = () => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.GET_USERS_ERROR,
             payload: {
@@ -244,7 +244,7 @@ export const RegisterCustomer = (data) => async (dispatch) => {
             `${process.env.REACT_APP_BASE_URL}/Auth/Register`, data
         );
 
-        console.log(res);
+        ;
         dispatch({
             type: types.REGISTER_CLIENT_SUCCESS,
             payload: {
@@ -254,7 +254,7 @@ export const RegisterCustomer = (data) => async (dispatch) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error)
+        
         dispatch({
             type: types.REGISTER_CLIENT_ERROR,
             payload: {
@@ -272,8 +272,8 @@ export const authLogout = () => async (dispatch) => {
       dispatch({
         type: types.AUTH_LOGOUT,
       });
-      console.log("oke")
+
     } catch (error) {
-      console.log(error);
+      ;
     }
   };

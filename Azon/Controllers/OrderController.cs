@@ -1,6 +1,7 @@
 ﻿using Azon.Areas.Identity.Data;
 using Azon.Data;
 using Azon.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +28,8 @@ namespace ClientShopping.Controllers
             _userManager = userManager;
             _httpContextAccessor = httpContextAccessor;
         }
+
+        [Authorize(Roles = "Admin")]
         [HttpPost("updateStatus")]
         public async Task<ActionResult<ServiceResponse<Order>>> UpdateStatusOrder(StatusDto statusDto)
         {
@@ -62,6 +65,7 @@ namespace ClientShopping.Controllers
 
         }
 
+        [Authorize(Roles = "Admin,Customer")]
 
         [HttpPost("cancel")]
         public async Task<ActionResult<ServiceResponse<Order>>> CancelOrder(id id)
@@ -95,6 +99,7 @@ namespace ClientShopping.Controllers
 
 
 
+        [Authorize(Roles = "Admin,Customer")]
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ServiceResponse<Order>>> GetSingleOrder(int id)
@@ -118,6 +123,7 @@ namespace ClientShopping.Controllers
 
 
         }
+        [Authorize(Roles = "Admin")]
 
         [HttpGet("allOrders")]
         public async Task<ActionResult<ServiceResponse<List<Order>>>> GetAllOrders()
@@ -147,6 +153,7 @@ namespace ClientShopping.Controllers
         }
 
 
+        [Authorize(Roles = "Admin,Customer")]
 
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Order>>>> GetOrders()

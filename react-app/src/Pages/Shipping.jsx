@@ -37,10 +37,10 @@ const Shipping = () => {
     useEffect(()=> {
       
       if (guid === undefined){
-        dispatch(GetShippingDetails({guid:null})).then(res => console.log(res,"okay"))
+        dispatch(GetShippingDetails({guid:null}))
       }
      else {
-      dispatch(GetShippingDetails({guid})).then(res => console.log(res,"okay"))
+      dispatch(GetShippingDetails({guid}))
      }
     
     },[]);
@@ -85,7 +85,7 @@ const Shipping = () => {
 
     function updateLocation() {
       if (location.loaded){
-        console.log(location)
+      
         setFormData({
           ...formData,
 

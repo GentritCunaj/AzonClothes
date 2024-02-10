@@ -17,7 +17,7 @@ const Checkout = () => {
     const dispatch = useDispatch();
 
     const [totalUnitPrices, setTotalUnitPrices] = useState(0);
-    useEffect(()=> {dispatch(GetWishlist({guid:guid})).then(res => console.log(selectedProducts,"selected"))},[]);
+    useEffect(()=> {dispatch(GetWishlist({guid:guid}))},[]);
 
     const [productQuantities, setProductQuantities] = useState({});
 

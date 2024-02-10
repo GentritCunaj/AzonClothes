@@ -16,7 +16,7 @@ const UserInfo = () => {
     const { id } = useParams();
     const {userId} = useSelector((store) => store.auth);
     const dispatch = useDispatch();
-    useEffect(()=> {dispatch(GetUserById(id)).then(res => console.log(res))},[]);
+    useEffect(()=> {dispatch(GetUserById(id))},[]);
     
     return (
         <>
